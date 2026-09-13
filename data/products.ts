@@ -21,7 +21,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/01-dark-walnut-gold-filigree-storage-bed.png"
+      "awf/products/bedroom-set-wooden/01-dark-walnut-gold-filigree-storage-bed.png"
     ],
     "customizable": true,
     "featured": true
@@ -45,7 +45,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/02-white-gold-navy-baroque-bed.png"
+      "awf/products/bedroom-set-wooden/02-white-gold-navy-baroque-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -69,7 +69,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/03-white-gold-medallion-six-door-wardrobe.png"
+      "awf/products/bedroom-set-wooden/03-white-gold-medallion-six-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -93,7 +93,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/04-walnut-scrollwork-faceted-panel-bed.png"
+      "awf/products/bedroom-set-wooden/04-walnut-scrollwork-faceted-panel-bed.png"
     ],
     "customizable": true,
     "featured": true
@@ -117,7 +117,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/05-walnut-curved-gold-lattice-bed.png"
+      "awf/products/bedroom-set-wooden/05-walnut-curved-gold-lattice-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -141,7 +141,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/06-light-walnut-floral-lattice-bed.png"
+      "awf/products/bedroom-set-wooden/06-light-walnut-floral-lattice-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -165,7 +165,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/07-mahogany-gold-black-ornate-bed.png"
+      "awf/products/bedroom-set-wooden/07-mahogany-gold-black-ornate-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -189,7 +189,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/08-dark-walnut-illuminated-diamond-bed.png"
+      "awf/products/bedroom-set-wooden/08-dark-walnut-illuminated-diamond-bed.png"
     ],
     "customizable": true,
     "featured": true
@@ -213,7 +213,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/09-walnut-white-gold-modern-bed.png"
+      "awf/products/bedroom-set-wooden/09-walnut-white-gold-modern-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -237,7 +237,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/10-two-tone-medallion-sculptural-bed.png"
+      "awf/products/bedroom-set-wooden/10-two-tone-medallion-sculptural-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -261,7 +261,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/11-walnut-checkerboard-lattice-bed.png"
+      "awf/products/bedroom-set-wooden/11-walnut-checkerboard-lattice-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -285,7 +285,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/12-walnut-glass-display-cupboard.png"
+      "awf/products/bedroom-set-wooden/12-walnut-glass-display-cupboard.png"
     ],
     "customizable": true,
     "featured": false
@@ -310,7 +310,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/13-black-ivory-tufted-luxury-bed.png"
+      "awf/products/bedroom-set-wooden/13-black-ivory-tufted-luxury-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -334,7 +334,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/14-glossy-walnut-curved-footboard-bed.png"
+      "awf/products/bedroom-set-wooden/14-glossy-walnut-curved-footboard-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -358,7 +358,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/15-dark-walnut-ivory-sunburst-bed.png"
+      "awf/products/bedroom-set-wooden/15-dark-walnut-ivory-sunburst-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -382,7 +382,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/16-white-gold-geometric-y-bed.png"
+      "awf/products/bedroom-set-wooden/16-white-gold-geometric-y-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -407,7 +407,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/17-white-black-cyan-led-tufted-bed.png"
+      "awf/products/bedroom-set-wooden/17-white-black-cyan-led-tufted-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -431,7 +431,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/18-ivory-gold-oval-baroque-bed.png"
+      "awf/products/bedroom-set-wooden/18-ivory-gold-oval-baroque-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -455,7 +455,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/19-ivory-gold-horizontal-panel-bed.png"
+      "awf/products/bedroom-set-wooden/19-ivory-gold-horizontal-panel-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -479,7 +479,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/20-white-purple-oval-led-bed.png"
+      "awf/products/bedroom-set-wooden/20-white-purple-oval-led-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -503,7 +503,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/21-dark-walnut-beige-illuminated-bed.png"
+      "awf/products/bedroom-set-wooden/21-dark-walnut-beige-illuminated-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -527,7 +527,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/22-reddish-walnut-ivory-silver-bed.png"
+      "awf/products/bedroom-set-wooden/22-reddish-walnut-ivory-silver-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -551,7 +551,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/23-ivory-gold-sunburst-medallion-bed.png"
+      "awf/products/bedroom-set-wooden/23-ivory-gold-sunburst-medallion-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -576,7 +576,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/24-cream-burgundy-rounded-tufted-bed.png"
+      "awf/products/bedroom-set-wooden/24-cream-burgundy-rounded-tufted-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -600,7 +600,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/25-white-gold-horizontal-padded-bed.png"
+      "awf/products/bedroom-set-wooden/25-white-gold-horizontal-padded-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -624,7 +624,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/26-white-gold-chevron-bed.png"
+      "awf/products/bedroom-set-wooden/26-white-gold-chevron-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -648,7 +648,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/27-black-white-asymmetric-medallion-bed.png"
+      "awf/products/bedroom-set-wooden/27-black-white-asymmetric-medallion-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -672,7 +672,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/28-cream-mahogany-traditional-curved-bed.png"
+      "awf/products/bedroom-set-wooden/28-cream-mahogany-traditional-curved-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -696,7 +696,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/29-honey-orange-diamond-inlay-bed.png"
+      "awf/products/bedroom-set-wooden/29-honey-orange-diamond-inlay-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -721,7 +721,7 @@ export const products: Product[] = [
       "height": "1150 mm"
     },
     "images": [
-      "/images/products/bedroom-set-wooden/30-dark-espresso-beige-tufted-bed.png"
+      "awf/products/bedroom-set-wooden/30-dark-espresso-beige-tufted-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -746,7 +746,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/01-upholstered-pattern-bench.png"
+      "awf/products/benches/01-upholstered-pattern-bench.png"
     ],
     "customizable": true,
     "featured": true
@@ -770,7 +770,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/02-blue-picnic-table-bench-set.png"
+      "awf/products/benches/02-blue-picnic-table-bench-set.png"
     ],
     "customizable": true,
     "featured": false
@@ -794,7 +794,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/03-red-picnic-table-bench-set.png"
+      "awf/products/benches/03-red-picnic-table-bench-set.png"
     ],
     "customizable": true,
     "featured": false
@@ -818,7 +818,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/04-pale-wood-school-desk-set.png"
+      "awf/products/benches/04-pale-wood-school-desk-set.png"
     ],
     "customizable": true,
     "featured": true
@@ -842,7 +842,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/05-blue-student-desk-unit.png"
+      "awf/products/benches/05-blue-student-desk-unit.png"
     ],
     "customizable": true,
     "featured": false
@@ -866,7 +866,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/06-natural-wood-desk-chair-set.png"
+      "awf/products/benches/06-natural-wood-desk-chair-set.png"
     ],
     "customizable": true,
     "featured": false
@@ -890,7 +890,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/07-turquoise-frame-school-bench.png"
+      "awf/products/benches/07-turquoise-frame-school-bench.png"
     ],
     "customizable": true,
     "featured": false
@@ -914,7 +914,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/08-black-frame-school-bench.png"
+      "awf/products/benches/08-black-frame-school-bench.png"
     ],
     "customizable": true,
     "featured": false
@@ -938,7 +938,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/09-gray-cafeteria-table-bench-set.png"
+      "awf/products/benches/09-gray-cafeteria-table-bench-set.png"
     ],
     "customizable": true,
     "featured": false
@@ -962,7 +962,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/10-blue-two-seat-classroom-set.png"
+      "awf/products/benches/10-blue-two-seat-classroom-set.png"
     ],
     "customizable": true,
     "featured": false
@@ -986,7 +986,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/11-dark-red-cafeteria-set.png"
+      "awf/products/benches/11-dark-red-cafeteria-set.png"
     ],
     "customizable": true,
     "featured": false
@@ -1010,7 +1010,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/12-printed-blue-picnic-set.png"
+      "awf/products/benches/12-printed-blue-picnic-set.png"
     ],
     "customizable": true,
     "featured": false
@@ -1034,7 +1034,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/13-gray-woodgrain-black-frame-set.png"
+      "awf/products/benches/13-gray-woodgrain-black-frame-set.png"
     ],
     "customizable": true,
     "featured": false
@@ -1058,7 +1058,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/14-printed-restaurant-table-bench-set.png"
+      "awf/products/benches/14-printed-restaurant-table-bench-set.png"
     ],
     "customizable": true,
     "featured": false
@@ -1082,7 +1082,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/15-yellow-picnic-table-bench-set.png"
+      "awf/products/benches/15-yellow-picnic-table-bench-set.png"
     ],
     "customizable": true,
     "featured": false
@@ -1106,7 +1106,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/16-black-pattern-silver-frame-set.png"
+      "awf/products/benches/16-black-pattern-silver-frame-set.png"
     ],
     "customizable": true,
     "featured": false
@@ -1130,7 +1130,7 @@ export const products: Product[] = [
       "height": "450 mm"
     },
     "images": [
-      "/images/products/benches/17-silver-three-seat-waiting-bench.png"
+      "awf/products/benches/17-silver-three-seat-waiting-bench.png"
     ],
     "customizable": true,
     "featured": false
@@ -1154,7 +1154,7 @@ export const products: Product[] = [
       "height": "1650 mm"
     },
     "images": [
-      "/images/products/bunker-bed/01-black-standard-bunk-bed.png"
+      "awf/products/bunker-bed/01-black-standard-bunk-bed.png"
     ],
     "customizable": true,
     "featured": true
@@ -1178,7 +1178,7 @@ export const products: Product[] = [
       "height": "1650 mm"
     },
     "images": [
-      "/images/products/bunker-bed/02-silver-arched-bunk-bed.png"
+      "awf/products/bunker-bed/02-silver-arched-bunk-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1202,7 +1202,7 @@ export const products: Product[] = [
       "height": "1650 mm"
     },
     "images": [
-      "/images/products/bunker-bed/03-black-family-bunk-bed.png"
+      "awf/products/bunker-bed/03-black-family-bunk-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1226,7 +1226,7 @@ export const products: Product[] = [
       "height": "1650 mm"
     },
     "images": [
-      "/images/products/bunker-bed/04-green-storage-bunk-system.png"
+      "awf/products/bunker-bed/04-green-storage-bunk-system.png"
     ],
     "customizable": true,
     "featured": false
@@ -1250,7 +1250,7 @@ export const products: Product[] = [
       "height": "1650 mm"
     },
     "images": [
-      "/images/products/bunker-bed/05-pink-metal-bunk-bed.png"
+      "awf/products/bunker-bed/05-pink-metal-bunk-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1274,7 +1274,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/computer-and-led-table/01-slim-computer-desk.png"
+      "awf/products/computer-and-led-table/01-slim-computer-desk.png"
     ],
     "customizable": true,
     "featured": true
@@ -1298,7 +1298,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/computer-and-led-table/02-black-office-desk.png"
+      "awf/products/computer-and-led-table/02-black-office-desk.png"
     ],
     "customizable": true,
     "featured": false
@@ -1322,7 +1322,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/computer-and-led-table/03-shelf-workstation.png"
+      "awf/products/computer-and-led-table/03-shelf-workstation.png"
     ],
     "customizable": true,
     "featured": true
@@ -1346,7 +1346,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/computer-and-led-table/04-low-led-tv-console.png"
+      "awf/products/computer-and-led-table/04-low-led-tv-console.png"
     ],
     "customizable": true,
     "featured": false
@@ -1370,7 +1370,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/computer-and-led-table/05-conference-desk.png"
+      "awf/products/computer-and-led-table/05-conference-desk.png"
     ],
     "customizable": true,
     "featured": false
@@ -1394,7 +1394,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/01-black-canopy-bed.png"
+      "awf/products/ironbeds/01-black-canopy-bed.png"
     ],
     "customizable": true,
     "featured": true
@@ -1418,7 +1418,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/02-black-gold-scroll-bed.png"
+      "awf/products/ironbeds/02-black-gold-scroll-bed.png"
     ],
     "customizable": true,
     "featured": true
@@ -1442,7 +1442,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/03-ornate-oval-panel-bed.png"
+      "awf/products/ironbeds/03-ornate-oval-panel-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1466,7 +1466,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/04-diamond-panel-scroll-bed.png"
+      "awf/products/ironbeds/04-diamond-panel-scroll-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1490,7 +1490,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/05-folk-art-story-panel-bed.png"
+      "awf/products/ironbeds/05-folk-art-story-panel-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1514,7 +1514,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/06-wave-floral-medallion-bed.png"
+      "awf/products/ironbeds/06-wave-floral-medallion-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1538,7 +1538,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/07-white-gold-red-arched-bed.png"
+      "awf/products/ironbeds/07-white-gold-red-arched-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1562,7 +1562,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/08-dense-oval-folk-art-bed.png"
+      "awf/products/ironbeds/08-dense-oval-folk-art-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1586,7 +1586,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/09-red-geometric-panel-bed.png"
+      "awf/products/ironbeds/09-red-geometric-panel-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1610,7 +1610,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/10-brown-diamond-scroll-bed.png"
+      "awf/products/ironbeds/10-brown-diamond-scroll-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1634,7 +1634,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/11-white-pink-ornate-bed.png"
+      "awf/products/ironbeds/11-white-pink-ornate-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1658,7 +1658,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/12-simple-white-single-bed.png"
+      "awf/products/ironbeds/12-simple-white-single-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1682,7 +1682,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/13-woven-charpai-cot.png"
+      "awf/products/ironbeds/13-woven-charpai-cot.png"
     ],
     "customizable": true,
     "featured": false
@@ -1706,7 +1706,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/14-cream-child-daybed.png"
+      "awf/products/ironbeds/14-cream-child-daybed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1731,7 +1731,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/15-brown-tufted-metal-bed.png"
+      "awf/products/ironbeds/15-brown-tufted-metal-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1756,7 +1756,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/16-vertical-channel-tufted-bed.png"
+      "awf/products/ironbeds/16-vertical-channel-tufted-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1781,7 +1781,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/17-ornate-grey-tufted-bed.png"
+      "awf/products/ironbeds/17-ornate-grey-tufted-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1806,7 +1806,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/18-wood-panel-iron-bed.png"
+      "awf/products/ironbeds/18-wood-panel-iron-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1830,7 +1830,7 @@ export const products: Product[] = [
       "height": "1100 mm"
     },
     "images": [
-      "/images/products/ironbeds/19-antique-brass-arched-bed.png"
+      "awf/products/ironbeds/19-antique-brass-arched-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1854,7 +1854,7 @@ export const products: Product[] = [
       "height": "800 mm"
     },
     "images": [
-      "/images/products/sofa-sets/01-plaid-metal-frame-sofa-set.png"
+      "awf/products/sofa-sets/01-plaid-metal-frame-sofa-set.png"
     ],
     "customizable": true,
     "featured": true
@@ -1878,7 +1878,7 @@ export const products: Product[] = [
       "height": "800 mm"
     },
     "images": [
-      "/images/products/sofa-sets/02-turquoise-tufted-sofa-set.png"
+      "awf/products/sofa-sets/02-turquoise-tufted-sofa-set.png"
     ],
     "customizable": true,
     "featured": false
@@ -1902,7 +1902,7 @@ export const products: Product[] = [
       "height": "850 mm"
     },
     "images": [
-      "/images/products/sofacombed/01-decorative-pattern-sofa-bed.png"
+      "awf/products/sofacombed/01-decorative-pattern-sofa-bed.png"
     ],
     "customizable": true,
     "featured": true
@@ -1926,7 +1926,7 @@ export const products: Product[] = [
       "height": "850 mm"
     },
     "images": [
-      "/images/products/sofacombed/02-pullout-metal-sofa-bed.png"
+      "awf/products/sofacombed/02-pullout-metal-sofa-bed.png"
     ],
     "customizable": true,
     "featured": false
@@ -1950,7 +1950,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/01-gold-wire-accent-chair.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/01-gold-wire-accent-chair.png"
     ],
     "customizable": true,
     "featured": true
@@ -1975,7 +1975,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/02-patterned-cushion-bench.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/02-patterned-cushion-bench.png"
     ],
     "customizable": true,
     "featured": true
@@ -1999,7 +1999,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/03-red-slat-metal-bench.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/03-red-slat-metal-bench.png"
     ],
     "customizable": true,
     "featured": false
@@ -2023,7 +2023,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/04-blue-four-seat-waiting-bench.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/04-blue-four-seat-waiting-bench.png"
     ],
     "customizable": true,
     "featured": false
@@ -2047,7 +2047,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/05-mesh-cantilever-visitor-chair.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/05-mesh-cantilever-visitor-chair.png"
     ],
     "customizable": true,
     "featured": false
@@ -2071,7 +2071,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/06-purple-round-ottoman.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/06-purple-round-ottoman.png"
     ],
     "customizable": true,
     "featured": false
@@ -2095,7 +2095,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/07-grey-rectangular-stool.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/07-grey-rectangular-stool.png"
     ],
     "customizable": true,
     "featured": false
@@ -2119,7 +2119,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/08-magenta-round-stool.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/08-magenta-round-stool.png"
     ],
     "customizable": true,
     "featured": false
@@ -2143,7 +2143,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/09-blue-plastic-tablet-chair.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/09-blue-plastic-tablet-chair.png"
     ],
     "customizable": true,
     "featured": false
@@ -2167,7 +2167,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/10-blue-white-school-chair.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/10-blue-white-school-chair.png"
     ],
     "customizable": true,
     "featured": false
@@ -2192,7 +2192,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/11-upholstered-tablet-chair.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/11-upholstered-tablet-chair.png"
     ],
     "customizable": true,
     "featured": false
@@ -2216,7 +2216,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/12-blue-classroom-tablet-chair.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/12-blue-classroom-tablet-chair.png"
     ],
     "customizable": true,
     "featured": false
@@ -2240,7 +2240,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/13-white-bar-stool.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/13-white-bar-stool.png"
     ],
     "customizable": true,
     "featured": false
@@ -2264,7 +2264,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/14-black-padded-tablet-chair.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/14-black-padded-tablet-chair.png"
     ],
     "customizable": true,
     "featured": false
@@ -2288,7 +2288,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/15-white-tablet-chair-with-shelf.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/15-white-tablet-chair-with-shelf.png"
     ],
     "customizable": true,
     "featured": false
@@ -2312,7 +2312,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/16-white-bucket-tablet-chair.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/16-white-bucket-tablet-chair.png"
     ],
     "customizable": true,
     "featured": false
@@ -2336,7 +2336,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/17-black-wood-desk-chair-combo.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/17-black-wood-desk-chair-combo.png"
     ],
     "customizable": true,
     "featured": false
@@ -2360,7 +2360,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/18-grey-classroom-chair.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/18-grey-classroom-chair.png"
     ],
     "customizable": true,
     "featured": false
@@ -2384,7 +2384,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/19-maroon-tablet-chair.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/19-maroon-tablet-chair.png"
     ],
     "customizable": true,
     "featured": false
@@ -2408,7 +2408,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/20-maroon-wood-desk-chair-combo.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/20-maroon-wood-desk-chair-combo.png"
     ],
     "customizable": true,
     "featured": false
@@ -2432,7 +2432,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/21-mobile-double-sided-whiteboard.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/21-mobile-double-sided-whiteboard.png"
     ],
     "customizable": true,
     "featured": false
@@ -2456,7 +2456,7 @@ export const products: Product[] = [
       "height": "750 mm"
     },
     "images": [
-      "/images/products/stoolsragsstudy-tables-namaz-chair/22-grey-three-seat-waiting-bench.png"
+      "awf/products/stoolsragsstudy-tables-namaz-chair/22-grey-three-seat-waiting-bench.png"
     ],
     "customizable": true,
     "featured": false
@@ -2480,7 +2480,7 @@ export const products: Product[] = [
       "height": "1900 mm"
     },
     "images": [
-      "/images/products/swings/01-large-canopy-bed-swing.png"
+      "awf/products/swings/01-large-canopy-bed-swing.png"
     ],
     "customizable": true,
     "featured": true
@@ -2504,7 +2504,7 @@ export const products: Product[] = [
       "height": "1900 mm"
     },
     "images": [
-      "/images/products/swings/02-red-upholstered-bench-swing.png"
+      "awf/products/swings/02-red-upholstered-bench-swing.png"
     ],
     "customizable": true,
     "featured": false
@@ -2528,7 +2528,7 @@ export const products: Product[] = [
       "height": "1900 mm"
     },
     "images": [
-      "/images/products/swings/03-red-cushion-slatted-bench-swing.png"
+      "awf/products/swings/03-red-cushion-slatted-bench-swing.png"
     ],
     "customizable": true,
     "featured": false
@@ -2552,7 +2552,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/01-three-tier-shelf-table.png"
+      "awf/products/tables/01-three-tier-shelf-table.png"
     ],
     "customizable": true,
     "featured": true
@@ -2576,7 +2576,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/02-green-ornate-frame-table.png"
+      "awf/products/tables/02-green-ornate-frame-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -2600,7 +2600,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/03-woodgrain-x-frame-table.png"
+      "awf/products/tables/03-woodgrain-x-frame-table.png"
     ],
     "customizable": true,
     "featured": true
@@ -2624,7 +2624,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/04-pale-wood-office-desk.png"
+      "awf/products/tables/04-pale-wood-office-desk.png"
     ],
     "customizable": true,
     "featured": false
@@ -2648,7 +2648,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/05-angular-gaming-office-desk.png"
+      "awf/products/tables/05-angular-gaming-office-desk.png"
     ],
     "customizable": true,
     "featured": false
@@ -2672,7 +2672,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/06-dark-wood-office-desk.png"
+      "awf/products/tables/06-dark-wood-office-desk.png"
     ],
     "customizable": true,
     "featured": false
@@ -2696,7 +2696,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/07-round-wood-gray-frame-table.png"
+      "awf/products/tables/07-round-wood-gray-frame-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -2720,7 +2720,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/08-long-narrow-trestle-table.png"
+      "awf/products/tables/08-long-narrow-trestle-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -2744,7 +2744,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/09-glass-chrome-table.png"
+      "awf/products/tables/09-glass-chrome-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -2768,7 +2768,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/10-square-black-table.png"
+      "awf/products/tables/10-square-black-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -2792,7 +2792,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/11-marble-chrome-table.png"
+      "awf/products/tables/11-marble-chrome-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -2816,7 +2816,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/12-compact-black-pattern-table.png"
+      "awf/products/tables/12-compact-black-pattern-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -2840,7 +2840,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/13-round-mirror-vanity-table.png"
+      "awf/products/tables/13-round-mirror-vanity-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -2864,7 +2864,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/14-patterned-top-table.png"
+      "awf/products/tables/14-patterned-top-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -2888,7 +2888,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/15-light-wood-black-frame-table.png"
+      "awf/products/tables/15-light-wood-black-frame-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -2912,7 +2912,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/16-black-angular-frame-table.png"
+      "awf/products/tables/16-black-angular-frame-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -2936,7 +2936,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/17-long-black-dining-table.png"
+      "awf/products/tables/17-long-black-dining-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -2960,7 +2960,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/18-dark-wood-shelf-workstation.png"
+      "awf/products/tables/18-dark-wood-shelf-workstation.png"
     ],
     "customizable": true,
     "featured": false
@@ -2984,7 +2984,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/19-warm-wood-side-shelf-workstation.png"
+      "awf/products/tables/19-warm-wood-side-shelf-workstation.png"
     ],
     "customizable": true,
     "featured": false
@@ -3008,7 +3008,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/20-white-side-shelf-workstation.png"
+      "awf/products/tables/20-white-side-shelf-workstation.png"
     ],
     "customizable": true,
     "featured": false
@@ -3032,7 +3032,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/21-glass-dining-table.png"
+      "awf/products/tables/21-glass-dining-table.png"
     ],
     "customizable": true,
     "featured": false
@@ -3056,7 +3056,7 @@ export const products: Product[] = [
       "height": "760 mm"
     },
     "images": [
-      "/images/products/tables/22-multi-person-office-workstation.png"
+      "awf/products/tables/22-multi-person-office-workstation.png"
     ],
     "customizable": true,
     "featured": false
@@ -3080,7 +3080,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/01-six-door-copper-brown-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/01-six-door-copper-brown-wardrobe.png"
     ],
     "customizable": true,
     "featured": true
@@ -3104,7 +3104,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/02-black-floral-panel-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/02-black-floral-panel-wardrobe.png"
     ],
     "customizable": true,
     "featured": true
@@ -3128,7 +3128,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/03-compact-two-door-brown-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/03-compact-two-door-brown-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3152,7 +3152,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/04-white-pink-three-door-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/04-white-pink-three-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3176,7 +3176,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/05-dark-marble-four-door-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/05-dark-marble-four-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3200,7 +3200,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/06-brown-glass-display-cupboard.png"
+      "awf/products/wardrobes-cupboards-dividers/06-brown-glass-display-cupboard.png"
     ],
     "customizable": true,
     "featured": false
@@ -3224,7 +3224,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/07-beige-combination-display-cupboard.png"
+      "awf/products/wardrobes-cupboards-dividers/07-beige-combination-display-cupboard.png"
     ],
     "customizable": true,
     "featured": false
@@ -3248,7 +3248,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/08-wide-beige-wall-cabinet.png"
+      "awf/products/wardrobes-cupboards-dividers/08-wide-beige-wall-cabinet.png"
     ],
     "customizable": true,
     "featured": false
@@ -3272,7 +3272,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/09-narrow-brown-display-cabinet.png"
+      "awf/products/wardrobes-cupboards-dividers/09-narrow-brown-display-cabinet.png"
     ],
     "customizable": true,
     "featured": false
@@ -3296,7 +3296,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/10-mirrored-marble-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/10-mirrored-marble-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3320,7 +3320,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/11-black-red-floral-three-door-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/11-black-red-floral-three-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3344,7 +3344,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/12-cream-mirrored-dressing-cabinet.png"
+      "awf/products/wardrobes-cupboards-dividers/12-cream-mirrored-dressing-cabinet.png"
     ],
     "customizable": true,
     "featured": false
@@ -3368,7 +3368,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/13-wide-cream-combination-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/13-wide-cream-combination-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3392,7 +3392,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/14-copper-brown-sliding-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/14-copper-brown-sliding-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3416,7 +3416,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/15-brown-three-door-bordered-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/15-brown-three-door-bordered-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3440,7 +3440,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/16-white-narrow-two-door-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/16-white-narrow-two-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3464,7 +3464,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/17-antique-cream-ornate-three-door-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/17-antique-cream-ornate-three-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3488,7 +3488,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/18-pale-ivory-four-door-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/18-pale-ivory-four-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3512,7 +3512,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/19-brown-four-door-medallion-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/19-brown-four-door-medallion-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3536,7 +3536,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/20-black-ivory-ornate-three-door-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/20-black-ivory-ornate-three-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3560,7 +3560,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/21-brown-tree-motif-two-door-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/21-brown-tree-motif-two-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3584,7 +3584,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/22-dark-espresso-two-door-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/22-dark-espresso-two-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3608,7 +3608,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/23-warm-walnut-two-door-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/23-warm-walnut-two-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3632,7 +3632,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/24-pale-grey-four-door-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/24-pale-grey-four-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3656,7 +3656,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/25-dark-polished-brown-two-door-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/25-dark-polished-brown-two-door-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3680,7 +3680,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/26-dark-upper-lower-door-cupboard.png"
+      "awf/products/wardrobes-cupboards-dividers/26-dark-upper-lower-door-cupboard.png"
     ],
     "customizable": true,
     "featured": false
@@ -3704,7 +3704,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/27-lavender-black-wide-wardrobe.png"
+      "awf/products/wardrobes-cupboards-dividers/27-lavender-black-wide-wardrobe.png"
     ],
     "customizable": true,
     "featured": false
@@ -3729,7 +3729,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/28-white-metal-baby-crib.png"
+      "awf/products/wardrobes-cupboards-dividers/28-white-metal-baby-crib.png"
     ],
     "customizable": true,
     "featured": false
@@ -3753,7 +3753,7 @@ export const products: Product[] = [
       "height": "2100 mm"
     },
     "images": [
-      "/images/products/wardrobes-cupboards-dividers/29-slim-white-shoe-cabinet.png"
+      "awf/products/wardrobes-cupboards-dividers/29-slim-white-shoe-cabinet.png"
     ],
     "customizable": true,
     "featured": false

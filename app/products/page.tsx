@@ -1,3 +1,31 @@
-import type { Metadata } from 'next'; import { ProductBrowser } from '@/components/products/ProductBrowser'; import { products } from '@/data/content';
-export const metadata: Metadata = { title:'Products | Al Wahid Furnitures', description:'Browse the Al Wahid Furnitures catalogue — tables, desks, chairs, storage and custom furniture for every space.' };
-export default function ProductsPage(){return <div className="pt-[82px]"><section className="section-pad"><div className="container-wide"><p className="eyebrow">Catalogue</p><h1 className="mt-4 max-w-2xl font-display text-6xl leading-[.92] tracking-[-.03em] text-[var(--green)] sm:text-7xl">Selected Pieces.</h1><p className="mt-6 max-w-md text-sm leading-7 text-[var(--charcoal)]/65">Furniture designed with purposeful proportions, durable materials and considered details. Filter by category, space or material.</p><div className="mt-16"><ProductBrowser products={products}/></div></div></section></div>}
+import type { Metadata } from 'next';
+import { ProductBrowser } from '@/components/products/ProductBrowser';
+import { products } from '@/data/content';
+
+export const metadata: Metadata = {
+  title: 'Products | Al Wahid Furnitures',
+  description:
+    'Browse the Al Wahid Furnitures catalogue — bedroom sets, wardrobes, tables, desks, benches, iron beds, and custom furniture for every space.',
+};
+
+export default function ProductsPage() {
+  return (
+    <div className="pt-[82px]">
+      <section className="section-pad">
+        <div className="container-wide">
+          <p className="eyebrow">Catalogue</p>
+          <h1 className="mt-4 max-w-2xl font-display text-6xl leading-[.92] tracking-[-.03em] text-[var(--green)] sm:text-7xl">
+            Selected Pieces.
+          </h1>
+          <p className="mt-6 max-w-md text-sm leading-7 text-[var(--charcoal)]/65">
+            Furniture designed with purposeful proportions, durable materials, and considered details. Filter by category, space, or material.
+          </p>
+
+          <div className="mt-16">
+            <ProductBrowser products={products} />
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}

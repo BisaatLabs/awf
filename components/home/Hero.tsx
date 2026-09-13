@@ -1,2 +1,49 @@
-import Image from 'next/image'; import Link from 'next/link'; import { ArrowRight } from 'lucide-react';
-export function Hero(){return <section className="relative h-[100svh] min-h-[640px] overflow-hidden"><Image src="https://images.pexels.com/photos/3847582/pexels-photo-3847582.jpeg?auto=compress&cs=tinysrgb&h=1600&w=2400" alt="A warm architectural interior" fill priority className="object-cover"/><div className="absolute inset-0 bg-gradient-to-t from-[rgba(17,21,18,.55)] via-[rgba(17,21,18,.18)] to-[rgba(244,240,231,.25)]"/><div className="container-wide relative z-10 flex h-full flex-col justify-end pb-28 text-[var(--ivory)] md:pb-24"><p className="eyebrow mb-6 text-[var(--ivory)]/80">Built for Every Space.</p><h1 className="max-w-3xl font-display text-5xl leading-[.92] tracking-[-.03em] sm:text-7xl">Furniture made for<br/>how your space works.</h1><p className="mt-6 max-w-md text-sm leading-7 text-[var(--ivory)]/85 md:text-base">Thoughtfully crafted furniture for modern homes, workplaces and institutions.</p><div className="mt-8 flex flex-wrap gap-4"><Link href="/products" className="inline-flex items-center gap-2 bg-[var(--green)] px-6 py-4 text-xs font-bold uppercase tracking-[.13em] text-[var(--ivory)] transition hover:bg-[var(--walnut)]">View Catalogue <ArrowRight size={15}/></Link><Link href="/contact" className="inline-flex items-center gap-2 border border-[var(--ivory)]/40 px-6 py-4 text-xs font-bold uppercase tracking-[.13em] text-[var(--ivory)] transition hover:bg-[var(--ivory)] hover:text-[var(--charcoal)]">Request a Quote</Link></div></div><div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[var(--ivory)]/60"><div className="h-12 w-px bg-[var(--ivory)]/30"/></div></section>}
+import Image from 'next/image';
+import Link from 'next/link';
+import { ArrowRight } from 'lucide-react';
+
+export function Hero() {
+  return (
+    <section className="relative h-[100svh] min-h-[640px] overflow-hidden">
+      <Image
+        src="https://images.pexels.com/photos/3847582/pexels-photo-3847582.jpeg?auto=compress&cs=tinysrgb&h=1600&w=2400"
+        alt="A warm architectural interior"
+        fill
+        priority
+        sizes="100vw"
+        className="object-cover"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-[rgba(17,21,18,.6)] via-[rgba(17,21,18,.2)] to-[rgba(244,240,231,.25)]" />
+
+      <div className="container-wide relative z-10 flex h-full flex-col justify-end pb-28 text-[var(--ivory)] md:pb-24">
+        <p className="eyebrow mb-6 text-[var(--ivory)]/85">Built for Every Space.</p>
+        <h1 className="max-w-3xl font-display text-5xl leading-[.92] tracking-[-.03em] sm:text-7xl">
+          Furniture made for
+          <br />
+          how your space works.
+        </h1>
+        <p className="mt-6 max-w-md text-sm leading-7 text-[var(--ivory)]/85 md:text-base">
+          Thoughtfully crafted furniture for modern homes, workplaces, and educational institutions.
+        </p>
+        <div className="mt-8 flex flex-wrap gap-4">
+          <Link
+            href="/products"
+            className="inline-flex items-center gap-2 bg-[var(--green)] px-6 py-4 text-xs font-bold uppercase tracking-[.13em] text-[var(--ivory)] transition hover:bg-[var(--walnut)]"
+          >
+            View Catalogue <ArrowRight size={15} />
+          </Link>
+          <Link
+            href="/contact"
+            className="inline-flex items-center gap-2 border border-[var(--ivory)]/40 px-6 py-4 text-xs font-bold uppercase tracking-[.13em] text-[var(--ivory)] transition hover:bg-[var(--ivory)] hover:text-[var(--charcoal)]"
+          >
+            Request a Quote
+          </Link>
+        </div>
+      </div>
+
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 text-[var(--ivory)]/60">
+        <div className="h-12 w-px bg-[var(--ivory)]/30" />
+      </div>
+    </section>
+  );
+}

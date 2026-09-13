@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#F5F2EB" />
+      <stop offset="100%" stop-color="#EBE6DC" />
+    </linearGradient>
+    <linearGradient id="woodGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#9E7B50" />
+      <stop offset="100%" stop-color="#805F39" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bgGrad)" />
+  
+  <!-- Minimalist subtle floor shadow -->
+  <ellipse cx="400" cy="460" rx="220" ry="24" fill="#000000" opacity="0.06" />
+
+  <!-- Stylized Elegant Armchair / Furniture Piece -->
+  <g transform="translate(240, 160)">
+    <!-- Backrest -->
+    <rect x="70" y="30" width="180" height="150" rx="24" fill="#163A2F" />
+    <path d="M 90 50 Q 160 38 230 50" stroke="#9E7B50" stroke-width="2" fill="none" opacity="0.6" />
+    
+    <!-- Deep Cushion Seat -->
+    <rect x="50" y="150" width="220" height="70" rx="16" fill="#1F4E40" />
+    
+    <!-- Left Armrest -->
+    <rect x="25" y="110" width="45" height="100" rx="14" fill="#163A2F" />
+    <path d="M 25 110 L 70 110" stroke="#9E7B50" stroke-width="3" stroke-linecap="round" />
+    
+    <!-- Right Armrest -->
+    <rect x="250" y="110" width="45" height="100" rx="14" fill="#163A2F" />
+    <path d="M 250 110 L 295 110" stroke="#9E7B50" stroke-width="3" stroke-linecap="round" />
+    
+    <!-- Tapered Wooden Legs -->
+    <!-- Front Left -->
+    <polygon points="65,220 80,220 72,280 60,280" fill="url(#woodGrad)" />
+    <!-- Front Right -->
+    <polygon points="240,220 255,220 260,280 248,280" fill="url(#woodGrad)" />
+    <!-- Back Left -->
+    <polygon points="85,215 97,215 90,265 80,265" fill="#6B4D2C" />
+    <!-- Back Right -->
+    <polygon points="223,215 235,215 240,265 230,265" fill="#6B4D2C" />
+  </g>
+
+  <!-- Typography -->
+  <text x="400" y="515" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="14" font-weight="600" letter-spacing="3" fill="#163A2F" opacity="0.85">AL WAHID FURNITURES</text>
+  <text x="400" y="538" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="400" letter-spacing="1.5" fill="#78716C">BESPOKE CRAFTSMANSHIP</text>
+</svg>
+

@@ -6,6 +6,7 @@ import { ArrowRight, MessageCircle, ArrowLeft } from 'lucide-react';
 import { products } from '@/data/content';
 import { ProductCard } from '@/components/products/ProductCard';
 import { createProductWhatsAppUrl, customWhatsAppUrl } from '@/lib/whatsapp';
+import { getProductImage } from '@/lib/images';
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -59,7 +60,7 @@ export default function ProductDetail({ params }: { params: { slug: string } }) 
             <div className="grid gap-4">
               <div className="relative aspect-[1.15] overflow-hidden rounded-sm bg-[#f5f2eb] p-6 shadow-sm">
                 <Image
-                  src={product.images[0]}
+                  src={getProductImage(product.images[0], { width: 1000 })}
                   alt={product.name}
                   fill
                   priority
@@ -70,7 +71,7 @@ export default function ProductDetail({ params }: { params: { slug: string } }) 
               {product.images[1] && (
                 <div className="relative aspect-[2/1] overflow-hidden rounded-sm bg-[#f5f2eb]">
                   <Image
-                    src={product.images[1]}
+                    src={getProductImage(product.images[1], { width: 800 })}
                     alt={`${product.name} detail`}
                     fill
                     sizes="(max-width: 1023px) 100vw, 55vw"
