@@ -1,108 +1,117 @@
 'use client';
 
-import { useMemo, useState, useEffect, useTransition } from 'react';
-import { Search, SlidersHorizontal, X } from 'lucide-react';
-import type { Product } from '@/data/content';
+import { useState, useEffect, useTransition } from 'react';
+import { Search, SlidersHorizontal, X, Loader2, RotateCcw, Sparkles } from 'lucide-react';
+import type { DisplayProduct, PaginatedProductsResult } from '@/lib/supabase/queries';
+import { fetchProductsAction } from '@/app/actions/products';
 import { ProductCard } from './ProductCard';
 
-const CATEGORIES = [
-  'All',
-  'Bedroom Sets',
-  'Wardrobes & Storage',
-  'Tables',
-  'Study & Seating',
-  'Iron Beds',
-  'Benches',
-  'Desks',
-  'Bunk Beds',
-  'Sofas',
-  'Swings',
-] as const;
-
 const SPACES = ['All', 'Home', 'Office', 'Corporate', 'School', 'Institutional', 'Dining'] as const;
-const MATERIALS = ['All', 'Wood', 'Metal', 'Iron', 'Laminate', 'Upholstery'] as const;
-
-const PAGE_SIZE = 24;
+const MATERIALS = ['All', 'Wood', 'Metal', 'Iron', 'Laminate', 'Upholstery', 'Fabric'] as const;
 
 interface ProductBrowserProps {
-  products: Product[];
+  initialResult: PaginatedProductsResult;
+  categoriesList?: { id: string; name: string; slug: string }[];
 }
 
-export function ProductBrowser({ products }: ProductBrowserProps) {
+export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBrowserProps) {
+  const [products, setProducts] = useState<DisplayProduct[]>(initialResult.products);
+  const [totalCount, setTotalCount] = useState(initialResult.totalCount);
+  const [hasMore, setHasMore] = useState(initialResult.hasMore);
+  const [page, setPage] = useState(initialResult.currentPage);
+  
+  // Filters
   const [searchInput, setSearchInput] = useState('');
-  const [activeQuery, setActiveQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState('');
   const [category, setCategory] = useState<string>('All');
   const [space, setSpace] = useState<string>('All');
   const [material, setMaterial] = useState<string>('All');
-  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
-  const [, startTransition] = useTransition();
 
-  // Debounce search query to prevent lag on rapid keystrokes
+  // Loading states
+  const [isLoadingMore, setIsLoadingMore] = useState(false);
+  const [isFiltering, startTransition] = useTransition();
+
+  // Dynamic category list from DB + fallback static items
+  const categoryNames = [
+    'All',
+    ...Array.from(new Set(categoriesList.map((c) => c.name))),
+  ];
+
+  // Debounce search input
   useEffect(() => {
-    const handler = setTimeout(() => {
-      startTransition(() => {
-        setActiveQuery(searchInput.trim());
-      });
-    }, 200);
-
-    return () => clearTimeout(handler);
+    const timer = setTimeout(() => {
+      setSearchQuery(searchInput.trim());
+    }, 250);
+    return () => clearTimeout(timer);
   }, [searchInput]);
 
-  // Reset visible count when any filter changes
+  // Refetch when filters or search change
   useEffect(() => {
-    setVisibleCount(PAGE_SIZE);
-  }, [activeQuery, category, space, material]);
+    let isMounted = true;
+    startTransition(async () => {
+      const result = await fetchProductsAction({
+        page: 1,
+        pageSize: 18,
+        category,
+        space,
+        material,
+        search: searchQuery,
+      });
 
-  // Pre-indexed search map for maximum performance
-  const searchIndex = useMemo(() => {
-    return products.map((p) => ({
-      product: p,
-      searchContent: `${p.name} ${p.category} ${p.space} ${p.materials.join(' ')}`.toLowerCase(),
-    }));
-  }, [products]);
+      if (isMounted) {
+        setProducts(result.products);
+        setTotalCount(result.totalCount);
+        setHasMore(result.hasMore);
+        setPage(1);
+      }
+    });
 
-  // Fast memoized filtering
-  const filtered = useMemo(() => {
-    const q = activeQuery.toLowerCase();
+    return () => {
+      isMounted = false;
+    };
+  }, [category, space, material, searchQuery]);
 
-    return searchIndex
-      .filter(({ product: p, searchContent }) => {
-        if (q && !searchContent.includes(q)) return false;
-        if (
-          category !== 'All' &&
-          p.category !== category &&
-          !(category === 'Wardrobes & Storage' && p.category === 'Storage')
-        ) {
-          return false;
-        }
-        if (space !== 'All' && p.space !== space) return false;
-        if (material !== 'All' && !p.materials.includes(material)) return false;
+  // Load more pages
+  const handleLoadMore = async () => {
+    if (isLoadingMore || !hasMore) return;
+    setIsLoadingMore(true);
+    const nextPage = page + 1;
 
-        return true;
-      })
-      .map(({ product }) => product);
-  }, [searchIndex, activeQuery, category, space, material]);
+    try {
+      const result = await fetchProductsAction({
+        page: nextPage,
+        pageSize: 18,
+        category,
+        space,
+        material,
+        search: searchQuery,
+      });
 
-  const visibleProducts = useMemo(() => {
-    return filtered.slice(0, visibleCount);
-  }, [filtered, visibleCount]);
+      setProducts((prev) => [...prev, ...result.products]);
+      setPage(nextPage);
+      setHasMore(result.hasMore);
+    } catch (err) {
+      console.error('Failed to load more products:', err);
+    } finally {
+      setIsLoadingMore(false);
+    }
+  };
 
   const hasActiveFilters = Boolean(
-    searchInput || category !== 'All' || space !== 'All' || material !== 'All'
+    searchQuery || category !== 'All' || space !== 'All' || material !== 'All'
   );
 
   const handleReset = () => {
     setSearchInput('');
-    setActiveQuery('');
+    setSearchQuery('');
     setCategory('All');
     setSpace('All');
     setMaterial('All');
-    setVisibleCount(PAGE_SIZE);
   };
 
   return (
     <div>
-      {/* Search & Filter Toolbar */}
+      {/* Search & Category Filter Toolbar */}
       <div className="mb-10 border-y border-[var(--line)] py-5">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
           <label className="relative flex flex-1 items-center gap-3 border-b border-[var(--line)] pb-3 lg:max-w-sm">
@@ -110,7 +119,7 @@ export function ProductBrowser({ products }: ProductBrowserProps) {
             <input
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              placeholder="Search by name, category, or material..."
+              placeholder="Search catalogue by name, SKU, or specs..."
               className="w-full bg-transparent text-sm outline-none placeholder:text-[var(--charcoal)]/40"
             />
             {searchInput && (
@@ -126,7 +135,7 @@ export function ProductBrowser({ products }: ProductBrowserProps) {
 
           <div className="flex items-center gap-2 overflow-x-auto pb-1">
             <SlidersHorizontal size={16} className="mr-1 shrink-0 text-[var(--walnut)]" />
-            {CATEGORIES.map((item) => (
+            {categoryNames.map((item) => (
               <button
                 key={item}
                 onClick={() => setCategory(item)}
@@ -142,11 +151,9 @@ export function ProductBrowser({ products }: ProductBrowserProps) {
           </div>
         </div>
 
-        {/* Sub-filters for Space and Material */}
+        {/* Space & Material Sub-filters */}
         <div className="mt-5 flex flex-wrap items-center gap-2">
-          <span className="mr-1 text-[10px] font-bold uppercase tracking-[.12em] text-[var(--charcoal)]/40">
-            Space:
-          </span>
+          <span className="mr-1 text-[10px] font-bold uppercase tracking-[.12em] text-[var(--charcoal)]/40">Space:</span>
           {SPACES.map((item) => (
             <button
               key={item}
@@ -163,9 +170,7 @@ export function ProductBrowser({ products }: ProductBrowserProps) {
 
           <span className="mx-3 text-[var(--stone)]">|</span>
 
-          <span className="mr-1 text-[10px] font-bold uppercase tracking-[.12em] text-[var(--charcoal)]/40">
-            Material:
-          </span>
+          <span className="mr-1 text-[10px] font-bold uppercase tracking-[.12em] text-[var(--charcoal)]/40">Material:</span>
           {MATERIALS.map((item) => (
             <button
               key={item}
@@ -185,56 +190,86 @@ export function ProductBrowser({ products }: ProductBrowserProps) {
       {/* Results Header */}
       <div className="mb-6 flex items-center justify-between">
         <p className="text-xs uppercase tracking-[.12em] text-[var(--charcoal)]/50">
-          Showing{' '}
-          <span className="font-semibold text-[var(--charcoal)]">
-            {Math.min(visibleCount, filtered.length)}
-          </span>{' '}
-          of <span className="font-semibold text-[var(--charcoal)]">{filtered.length}</span> pieces
+          Showing <span className="font-semibold text-[var(--charcoal)]">{products.length}</span> of{' '}
+          <span className="font-semibold text-[var(--charcoal)]">{totalCount}</span> pieces
           {category !== 'All' && ` in ${category}`}
         </p>
 
         {hasActiveFilters && (
           <button
             onClick={handleReset}
-            className="text-xs font-bold uppercase tracking-[.1em] text-[var(--green)] hover:underline"
+            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[.1em] text-[var(--green)] hover:underline"
           >
-            Clear Filters
+            <RotateCcw size={12} /> Clear Filters
           </button>
         )}
       </div>
 
-      {/* Grid of Product Cards */}
-      {filtered.length > 0 ? (
+      {/* Loading Skeleton Transition Overlay */}
+      {isFiltering && (
+        <div className="py-4 text-center">
+          <span className="inline-flex items-center gap-2 text-xs font-medium text-[var(--charcoal)]/50">
+            <Loader2 size={14} className="animate-spin text-[var(--green)]" />
+            Updating catalogue...
+          </span>
+        </div>
+      )}
+
+      {/* Products Grid */}
+      {products.length > 0 ? (
         <>
           <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {visibleProducts.map((p) => (
+            {products.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
 
-          {visibleCount < filtered.length && (
+          {/* Load More Button */}
+          {hasMore && (
             <div className="mt-14 flex justify-center">
               <button
-                onClick={() => setVisibleCount((prev) => prev + PAGE_SIZE)}
-                className="group inline-flex items-center gap-2 border border-[var(--green)] bg-transparent px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-[var(--green)] transition hover:bg-[var(--green)] hover:text-[var(--ivory)]"
+                onClick={handleLoadMore}
+                disabled={isLoadingMore}
+                className="group inline-flex items-center gap-2 border border-[var(--green)] bg-transparent px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-[var(--green)] transition hover:bg-[var(--green)] hover:text-[var(--ivory)] disabled:opacity-50 cursor-pointer"
               >
-                Load More Pieces ({filtered.length - visibleCount} remaining)
+                {isLoadingMore ? (
+                  <>
+                    <Loader2 size={14} className="animate-spin" />
+                    Loading More Pieces…
+                  </>
+                ) : (
+                  <>
+                    Load More Pieces ({totalCount - products.length} remaining)
+                  </>
+                )}
               </button>
             </div>
           )}
         </>
       ) : (
-        <div className="border border-[var(--line)] py-24 text-center">
-          <p className="font-display text-3xl">No pieces found.</p>
-          <p className="mt-2 text-sm text-[var(--charcoal)]/60">
-            Try adjusting your search terms or clearing the selected filters.
+        /* Empty State */
+        <div className="border border-[var(--line)] bg-[#faf8f5] py-20 px-6 text-center rounded-sm">
+          <div className="mx-auto w-12 h-12 rounded-full bg-[var(--green)]/10 text-[var(--green)] flex items-center justify-center mb-4">
+            <Sparkles size={22} />
+          </div>
+          <h3 className="font-display text-3xl text-[var(--charcoal)]">No furniture pieces found</h3>
+          <p className="mt-2 text-sm text-[var(--charcoal)]/60 max-w-md mx-auto">
+            We couldn&apos;t find any pieces matching your current filter selection. Every piece at Al Wahid can also be manufactured custom to your specifications.
           </p>
-          <button
-            onClick={handleReset}
-            className="mt-6 inline-flex items-center border border-[var(--green)] px-6 py-3 text-xs font-bold uppercase tracking-[.12em] text-[var(--green)] transition hover:bg-[var(--green)] hover:text-[var(--ivory)]"
-          >
-            Reset Filters
-          </button>
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+            <button
+              onClick={handleReset}
+              className="inline-flex items-center gap-2 border border-[var(--green)] px-6 py-3 text-xs font-bold uppercase tracking-[.12em] text-[var(--green)] transition hover:bg-[var(--green)] hover:text-[var(--ivory)]"
+            >
+              <RotateCcw size={13} /> Reset Filters
+            </button>
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-2 bg-[var(--green)] px-6 py-3 text-xs font-bold uppercase tracking-[.12em] text-[var(--ivory)] transition hover:bg-[var(--walnut)]"
+            >
+              Request Custom Build
+            </a>
+          </div>
         </div>
       )}
     </div>

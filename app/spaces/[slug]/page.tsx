@@ -3,8 +3,9 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { spaces, products } from '@/data/content';
+import { spaces } from '@/data/content';
 import { ProductCard } from '@/components/products/ProductCard';
+import { getProductsBySpace } from '@/lib/supabase/queries';
 
 export function generateStaticParams() {
   return spaces.map((s) => ({ slug: s.slug }));
@@ -19,18 +20,12 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default function SpaceDetail({ params }: { params: { slug: string } }) {
+export default async function SpaceDetail({ params }: { params: { slug: string } }) {
   const space = spaces.find((s) => s.slug === params.slug);
   if (!space) notFound();
 
-  // Find products specifically matching this space or listed in space.products
-  const matching = products
-    .filter(
-      (p) =>
-        space.products.includes(p.name) ||
-        p.space.toLowerCase() === space.slug.toLowerCase()
-    )
-    .slice(0, 12);
+  // Fetch real products matching this space from Supabase
+  const matching = await getProductsBySpace(space.slug, 12);
 
   return (
     <div className="pt-[82px]">
@@ -61,15 +56,24 @@ export default function SpaceDetail({ params }: { params: { slug: string } }) {
               href="/products"
               className="text-xs font-bold uppercase tracking-[.12em] text-[var(--green)] hover:underline"
             >
-              Browse Full Catalogue ({products.length} pieces)
+              Browse Full Catalogue
             </Link>
           </div>
 
-          <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {matching.map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
-          </div>
+          {matching.length > 0 ? (
+            <div className="mt-12 grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+              {matching.map((p) => (
+                <ProductCard key={p.id} product={p} />
+              ))}
+            </div>
+          ) : (
+            <div className="mt-12 border border-[var(--line)] bg-[#faf8f5] py-16 px-6 text-center rounded-sm">
+              <p className="font-display text-2xl text-[var(--charcoal)]">Pieces currently being catalogued for {space.name}</p>
+              <p className="mt-2 text-sm text-[var(--charcoal)]/60 max-w-md mx-auto">
+                We manufacture bespoke furniture for all {space.name.toLowerCase()} requirements. Browse our complete catalogue or speak with our team directly.
+              </p>
+            </div>
+          )}
 
           <div className="mt-16 flex justify-center">
             <Link

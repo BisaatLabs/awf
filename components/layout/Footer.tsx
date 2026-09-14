@@ -1,5 +1,8 @@
+'use client';
+
 import Link from 'next/link';
 import Image from 'next/image';
+import { usePathname } from 'next/navigation';
 import { ArrowUpRight } from 'lucide-react';
 
 const LOGO_SRC = '/images/logo/logo.png';
@@ -15,6 +18,12 @@ const EXPLORE_LINKS: [string, string][] = [
 const SPACES_LIST = ['Home', 'Office', 'Corporate', 'Institutional', 'School'];
 
 export function Footer() {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith('/admin')) {
+    return null;
+  }
+
   return (
     <footer className="bg-[var(--charcoal)] text-[var(--ivory)]">
       <div className="container-wide grid gap-12 py-16 md:grid-cols-[1.3fr_1fr_1fr_auto]">

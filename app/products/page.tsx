@@ -1,6 +1,8 @@
 import type { Metadata } from 'next';
 import { ProductBrowser } from '@/components/products/ProductBrowser';
-import { products } from '@/data/content';
+import { getPaginatedProducts, getCategoriesList } from '@/lib/supabase/queries';
+
+export const revalidate = 3600;
 
 export const metadata: Metadata = {
   title: 'Products | Al Wahid Furnitures',
@@ -8,7 +10,12 @@ export const metadata: Metadata = {
     'Browse the Al Wahid Furnitures catalogue — bedroom sets, wardrobes, tables, desks, benches, iron beds, and custom furniture for every space.',
 };
 
-export default function ProductsPage() {
+export default async function ProductsPage() {
+  const [initialResult, categoriesList] = await Promise.all([
+    getPaginatedProducts({ page: 1, pageSize: 18 }),
+    getCategoriesList(),
+  ]);
+
   return (
     <div className="pt-[82px]">
       <section className="section-pad">
@@ -22,7 +29,7 @@ export default function ProductsPage() {
           </p>
 
           <div className="mt-16">
-            <ProductBrowser products={products} />
+            <ProductBrowser initialResult={initialResult} categoriesList={categoriesList} />
           </div>
         </div>
       </section>

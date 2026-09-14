@@ -1,77 +1,71 @@
-/**
- * Cloudinary Image Delivery and Optimization Helper
- *
- * Usage:
- * Set NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME in .env.local to enable automatic Cloudinary delivery:
- * NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME=your_cloud_name
- *
- * Example result:
- * https://res.cloudinary.com/your_cloud_name/image/upload/f_auto,q_auto/awf/products/bedroom-set-wooden/01-bed.png
- */
+// lib/images.ts
+// Cloudinary Image Delivery, Auto-Format (WebP/AVIF), and Resolution Optimization.
 
-const CLOUDINARY_CLOUD_NAME = process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME || '';
-const CLOUDINARY_BASE_URL = process.env.NEXT_PUBLIC_CLOUDINARY_BASE_URL || '';
-const DEFAULT_PLACEHOLDER = '/images/placeholder-furniture.svg';
+export const DEFAULT_PLACEHOLDER = '/images/placeholder-furniture.svg';
 
-interface ImageOptions {
+export interface ImageOptimizationOptions {
   width?: number;
   height?: number;
   quality?: number | 'auto';
-  crop?: 'limit' | 'fill' | 'fit' | 'scale';
+  crop?: 'limit' | 'fill' | 'fit' | 'scale' | 'thumb';
+  format?: 'auto' | 'webp' | 'avif' | 'jpg' | 'png';
 }
 
-export function getProductImage(
-  imagePath?: string | null,
-  options: ImageOptions = {}
+/**
+ * Injects Cloudinary transformations (f_auto, q_auto, w_*, c_limit) into image URLs
+ * to reduce bandwidth consumption by up to 95% and speed up page rendering.
+ */
+export function getOptimizedImageUrl(
+  imageUrl?: string | null,
+  options: ImageOptimizationOptions = {}
 ): string {
-  if (!imagePath || typeof imagePath !== 'string') {
+  if (!imageUrl || typeof imageUrl !== 'string' || imageUrl.trim() === '') {
     return DEFAULT_PLACEHOLDER;
   }
 
-  // If already a full URL (Cloudinary, S3, or external CDN), return as-is
-  if (imagePath.startsWith('http://') || imagePath.startsWith('https://')) {
-    return imagePath;
-  }
+  const cleanUrl = imageUrl.trim();
 
-  // If custom base URL is provided in env
-  if (CLOUDINARY_BASE_URL) {
-    const cleanPath = imagePath.replace(/^\/+/, '');
-    const cleanBase = CLOUDINARY_BASE_URL.replace(/\/+$/, '');
-    return `${cleanBase}/${cleanPath}`;
-  }
+  // If this is a Cloudinary delivery URL
+  if (cleanUrl.includes('res.cloudinary.com') && cleanUrl.includes('/image/upload/')) {
+    const [baseUrl, imagePath] = cleanUrl.split('/image/upload/');
 
-  // If Cloudinary cloud name is provided
-  if (CLOUDINARY_CLOUD_NAME) {
-    // Strip leading slashes and any local public prefix
-    let publicId = imagePath.replace(/^\/+/, '');
-    if (publicId.startsWith('images/products/')) {
-      publicId = publicId.replace('images/products/', 'awf/products/');
+    // If transformations are already present in the URL, avoid double-transforming
+    if (imagePath && /^f_[^/]+,q_[^/]+/.test(imagePath)) {
+      return cleanUrl;
     }
 
-    const transformations: string[] = ['f_auto', 'q_auto'];
+    const {
+      width = 600,
+      quality = 'auto',
+      format = 'auto',
+      crop = 'limit',
+      height,
+    } = options;
 
-    if (options.width) {
-      transformations.push(`w_${options.width}`);
-    }
-    if (options.height) {
-      transformations.push(`h_${options.height}`);
-    }
-    if (options.crop) {
-      transformations.push(`c_${options.crop}`);
-    } else if (options.width || options.height) {
-      transformations.push('c_limit');
+    const transformParts: string[] = [
+      `f_${format}`,
+      `q_${quality}`,
+      `c_${crop}`,
+      `w_${width}`,
+    ];
+
+    if (height) {
+      transformParts.push(`h_${height}`);
     }
 
-    const transformStr = transformations.join(',');
-    return `https://res.cloudinary.com/${CLOUDINARY_CLOUD_NAME}/image/upload/${transformStr}/${publicId}`;
+    const transformationStr = transformParts.join(',');
+    return `${baseUrl}/image/upload/${transformationStr}/${imagePath}`;
   }
 
-  // If referencing removed local product images and no Cloudinary is configured yet,
-  // return the elegant SVG placeholder to prevent 404s
-  if (imagePath.startsWith('/images/products') || imagePath.startsWith('awf/products')) {
-    return DEFAULT_PLACEHOLDER;
-  }
-
-  return imagePath;
+  return cleanUrl;
 }
 
+/**
+ * Pre-configured presets for different UI contexts
+ */
+export const imagePresets = {
+  thumbnail: (url?: string | null) => getOptimizedImageUrl(url, { width: 300, crop: 'limit' }),
+  card:      (url?: string | null) => getOptimizedImageUrl(url, { width: 600, crop: 'limit' }),
+  hero:      (url?: string | null) => getOptimizedImageUrl(url, { width: 1200, crop: 'limit' }),
+  zoom:      (url?: string | null) => getOptimizedImageUrl(url, { width: 1800, crop: 'limit' }),
+};

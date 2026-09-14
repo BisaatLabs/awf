@@ -3,45 +3,50 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, MessageCircle, ArrowLeft } from 'lucide-react';
-import { products } from '@/data/content';
 import { ProductCard } from '@/components/products/ProductCard';
 import { createProductWhatsAppUrl, customWhatsAppUrl } from '@/lib/whatsapp';
-import { getProductImage } from '@/lib/images';
+import { getProductBySlug, getRelatedProducts, getAllProductSlugs } from '@/lib/supabase/queries';
+import { imagePresets } from '@/lib/images';
 
-export function generateStaticParams() {
-  return products.map((p) => ({ slug: p.slug }));
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const slugs = await getAllProductSlugs();
+  return slugs.map((slug) => ({ slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const p = products.find((p) => p.slug === params.slug);
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const p = await getProductBySlug(params.slug);
   if (!p) return { title: 'Product not found | Al Wahid Furnitures' };
   return {
     title: `${p.name} | Al Wahid Furnitures`,
-    description: p.shortDescription,
+    description: p.shortDescription || p.description,
   };
 }
 
-export default function ProductDetail({ params }: { params: { slug: string } }) {
-  const product = products.find((p) => p.slug === params.slug);
-  if (!product) notFound();
+export default async function ProductDetail({ params }: { params: { slug: string } }) {
+  const product = await getProductBySlug(params.slug);
+  if (!product || !product.is_active) notFound();
+
+  const related = await getRelatedProducts(product.category, product.slug, 3);
 
   const details = [
-    ['Category', product.category],
-    ['Space', product.space],
-    ['Material', product.materials.join(', ')],
-    ['Finish', product.finish],
+    ['Category',      product.category || 'Bespoke Collection'],
+    ['Space',         product.space || 'Custom Spaces'],
+    ['Material',      product.materials.length > 0 ? product.materials.join(', ') : 'Solid Hardwood & Steel'],
+    ['Finish',        product.finish || 'Custom Polish / Finish'],
     [
       'Dimensions',
-      `${product.dimensions.width} × ${product.dimensions.depth} × ${product.dimensions.height}`,
+      [product.dimensions.width, product.dimensions.depth, product.dimensions.height]
+        .filter(Boolean)
+        .join(' × ') || 'Built to custom measurements',
     ],
-    ['Construction', 'Engineered joinery with heavy-duty structural reinforcement'],
+    ['Construction',  'Engineered joinery with heavy-duty structural reinforcement'],
     ['Customization', product.customizable ? 'Available in custom dimensions' : 'Standard sizes only'],
-  ];
+  ].filter(([, v]) => v);
 
-  // Related products from same category
-  const related = products
-    .filter((p) => p.category === product.category && p.id !== product.id)
-    .slice(0, 3);
+  const heroImageUrl = product.primaryImage ? imagePresets.hero(product.primaryImage) : null;
+  const secondaryImageUrl = product.images[1] ? imagePresets.hero(product.images[1]) : null;
 
   return (
     <div className="pt-[82px]">
@@ -57,21 +62,34 @@ export default function ProductDetail({ params }: { params: { slug: string } }) 
           </div>
 
           <div className="grid gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-16">
+            {/* Images Gallery */}
             <div className="grid gap-4">
-              <div className="relative aspect-[1.15] overflow-hidden rounded-sm bg-[#f5f2eb] p-6 shadow-sm">
-                <Image
-                  src={getProductImage(product.images[0], { width: 1000 })}
-                  alt={product.name}
-                  fill
-                  priority
-                  sizes="(max-width: 1023px) 100vw, 55vw"
-                  className="object-contain p-4"
-                />
+              <div className="relative aspect-[1.15] overflow-hidden rounded-sm bg-[#f5f2eb] p-6 shadow-xs">
+                {heroImageUrl ? (
+                  <Image
+                    src={heroImageUrl}
+                    alt={product.name}
+                    fill
+                    priority
+                    sizes="(max-width: 1023px) 100vw, 55vw"
+                    className="object-contain p-4"
+                  />
+                ) : (
+                  <div className="flex h-full flex-col items-center justify-center text-center p-6">
+                    <span className="text-xs uppercase tracking-widest text-[var(--charcoal)]/40 font-semibold">
+                      Al Wahid Furnitures
+                    </span>
+                    <span className="mt-2 text-xs text-[var(--charcoal)]/30">
+                      Studio photography coming soon
+                    </span>
+                  </div>
+                )}
               </div>
-              {product.images[1] && (
+
+              {secondaryImageUrl && (
                 <div className="relative aspect-[2/1] overflow-hidden rounded-sm bg-[#f5f2eb]">
                   <Image
-                    src={getProductImage(product.images[1], { width: 800 })}
+                    src={secondaryImageUrl}
                     alt={`${product.name} detail`}
                     fill
                     sizes="(max-width: 1023px) 100vw, 55vw"
@@ -81,19 +99,20 @@ export default function ProductDetail({ params }: { params: { slug: string } }) 
               )}
             </div>
 
+            {/* Details Column */}
             <div className="lg:pt-4">
               <p className="eyebrow">{product.category}</p>
               <h1 className="mt-4 font-display text-4xl leading-[1.05] tracking-[-.03em] text-[var(--green)] sm:text-5xl">
                 {product.name}
               </h1>
-              <p className="mt-6 text-sm leading-7 text-[var(--charcoal)]/75">{product.description}</p>
+              <p className="mt-6 text-sm leading-7 text-[var(--charcoal)]/75">
+                {product.description || product.shortDescription || 'Crafted with premium materials and bespoke proportions.'}
+              </p>
 
               <div className="mt-8 grid gap-px bg-[var(--line)] sm:grid-cols-2">
                 {details.map(([k, v]) => (
                   <div key={k} className="bg-[var(--ivory)] p-5">
-                    <p className="text-[10px] font-bold uppercase tracking-[.13em] text-[var(--walnut)]">
-                      {k}
-                    </p>
+                    <p className="text-[10px] font-bold uppercase tracking-[.13em] text-[var(--walnut)]">{k}</p>
                     <p className="mt-2 text-sm text-[var(--charcoal)]">{v}</p>
                   </div>
                 ))}
@@ -133,6 +152,7 @@ export default function ProductDetail({ params }: { params: { slug: string } }) 
             </div>
           </div>
 
+          {/* Related products */}
           {related.length > 0 && (
             <div className="mt-24 border-t border-[var(--line)] pt-12">
               <div className="mb-8 flex items-center justify-between">
