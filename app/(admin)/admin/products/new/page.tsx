@@ -1,11 +1,11 @@
 // app/admin/products/new/page.tsx
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { createSupabaseServerClient } from '@/lib/supabase/ssr-client';
+import { requireAdmin } from '@/lib/supabase/ssr-client';
 import { ProductForm } from '@/components/admin/ProductForm';
 
 async function getCategories() {
-  const supabase = createSupabaseServerClient();
+  const supabase = await requireAdmin();
   const { data } = await supabase.from('categories').select('id, name').order('name');
   return data ?? [];
 }

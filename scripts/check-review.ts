@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import { productSchema, categorySchema } from '../lib/admin-validation';
+import { getOptimizedImageUrl } from '../lib/images';
+const product = {name:'Desk',sku:'',category_id:'',space:'',description:'',short_description:'',materials:[],finish:'',width_mm:'',depth_mm:'',height_mm:'',price_display:'',customizable:true,featured:false,is_active:true,images:[]};
+assert.equal(productSchema.parse(product).name,'Desk');
+assert.equal(productSchema.safeParse({...product,name:'   '}).success,false);
+assert.equal(productSchema.safeParse({...product,is_active:'true'}).success,false);
+assert.equal(productSchema.safeParse({...product,category_id:'not-an-id'}).success,false);
+assert.equal(categorySchema.safeParse({name:'Desk',slug:'bad/slug'}).success,false);
+const image={cloudinary_public_id:'desk',secure_url:'javascript:alert(1)',is_primary:true,sort_order:0};
+assert.equal(productSchema.safeParse({...product,images:[image]}).success,false);
+assert.equal(productSchema.safeParse({...product,images:[{...image,secure_url:'https://res.cloudinary.com/demo/image/upload/desk.jpg'}]}).success,true);
+assert.equal(getOptimizedImageUrl(null),'/images/placeholder-furniture.svg');
+assert.match(getOptimizedImageUrl('https://res.cloudinary.com/demo/image/upload/v1/desk.jpg',{width:600}),/f_auto,q_auto,c_limit,w_600\/v1\/desk.jpg$/);
+console.log('9 validation and image checks passed.');

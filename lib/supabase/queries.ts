@@ -155,8 +155,8 @@ export async function getPaginatedProducts(
     search = '',
   } = params;
 
-  const validPage = Math.max(1, page);
-  const validPageSize = Math.max(1, Math.min(100, pageSize));
+  const validPage = Number.isFinite(page) ? Math.max(1, Math.floor(page)) : 1;
+  const validPageSize = Number.isFinite(pageSize) ? Math.max(1, Math.min(100, Math.floor(pageSize))) : 18;
   const offset = (validPage - 1) * validPageSize;
 
   try {
@@ -169,15 +169,15 @@ export async function getPaginatedProducts(
 
     // Filter by category
     if (category && category !== 'All') {
-      const { data: catData } = await supabase
+      const { data: catData, error: categoryError } = await supabase
         .from('categories')
         .select('id')
-        .ilike('name', category)
+        .eq('name', category)
         .single();
 
-      if (catData?.id) {
-        query = query.eq('category_id', catData.id);
-      }
+      if (categoryError && categoryError.code !== 'PGRST116') throw categoryError;
+      if (!catData) return { products: [], totalCount: 0, totalPages: 0, currentPage: validPage, pageSize: validPageSize, hasMore: false };
+      query = query.eq('category_id', catData.id);
     }
 
     // Filter by space
@@ -192,27 +192,20 @@ export async function getPaginatedProducts(
 
     // Search query across name, description, SKU
     if (search && search.trim()) {
-      const clean = search.trim();
+      const clean = search.trim().slice(0, 200).replace(/[^\p{L}\p{N}\s-]/gu, ' ').trim();
       query = query.or(`name.ilike.%${clean}%,description.ilike.%${clean}%,sku.ilike.%${clean}%`);
     }
 
     // Sort order & range
     query = query
-      .order('sort_order', { ascending: true })
+      .order('sort_order', { ascending: true }).order('id', { ascending: true })
       .range(offset, offset + validPageSize - 1);
 
     const { data, count, error } = await query;
 
     if (error) {
       console.error('[getPaginatedProducts] Supabase error:', error.message);
-      return {
-        products: [],
-        totalCount: 0,
-        totalPages: 0,
-        currentPage: validPage,
-        pageSize: validPageSize,
-        hasMore: false,
-      };
+      throw new Error('Unable to load the catalogue. Please try again.');
     }
 
     const totalCount = count ?? 0;
@@ -229,14 +222,7 @@ export async function getPaginatedProducts(
     };
   } catch (err) {
     console.error('[getPaginatedProducts] Unexpected failure:', err);
-    return {
-      products: [],
-      totalCount: 0,
-      totalPages: 0,
-      currentPage: validPage,
-      pageSize: validPageSize,
-      hasMore: false,
-    };
+    throw new Error('Unable to load the catalogue. Please try again.');
   }
 }
 

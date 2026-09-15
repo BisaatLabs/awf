@@ -1,13 +1,13 @@
 // app/admin/categories/page.tsx
 // Categories management page for admin dashboard.
 
-import { createSupabaseServerClient } from '@/lib/supabase/ssr-client';
+import { requireAdmin } from '@/lib/supabase/ssr-client';
 import { CategoriesManager } from '@/components/admin/CategoriesManager';
 
 export const revalidate = 0;
 
 export default async function AdminCategoriesPage() {
-  const supabase = await createSupabaseServerClient();
+  const supabase = await requireAdmin();
 
   // Fetch categories with product count
   const { data: categories } = await supabase

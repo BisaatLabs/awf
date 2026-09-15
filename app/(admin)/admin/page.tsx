@@ -1,11 +1,11 @@
 // app/admin/page.tsx
 // Dashboard — minimal overview with 4 stat cards.
 
-import { createSupabaseServerClient } from '@/lib/supabase/ssr-client';
+import { requireAdmin } from '@/lib/supabase/ssr-client';
 import { Package, CheckCircle, Tag, Star } from 'lucide-react';
 
 async function getStats() {
-  const supabase = createSupabaseServerClient();
+  const supabase = await requireAdmin();
 
   const [
     { count: total },

@@ -1,12 +1,14 @@
 // app/admin/actions.ts
 // Server actions for all admin CRUD operations.
-// Uses the service-role admin client to bypass RLS.
+// Verifies admin role and uses the session client with RLS.
 
 'use server';
 
 import { revalidatePath } from 'next/cache';
 import { redirect }       from 'next/navigation';
-import { supabaseAdmin }  from '@/lib/supabase/admin';
+import { requireAdmin } from '@/lib/supabase/ssr-client';
+import { productSchema, categorySchema, idSchema } from '@/lib/admin-validation';
+import { z } from 'zod';
 
 // ─── Slug helper ──────────────────────────────────────────────
 function toSlug(str: string) {
@@ -47,9 +49,11 @@ export type ProductFormData = {
 
 // ─── CREATE product ───────────────────────────────────────────
 export async function createProduct(data: ProductFormData) {
+  const db = await requireAdmin();
+  data = productSchema.parse(data);
   const slug = toSlug(data.name);
 
-  const { data: product, error } = await supabaseAdmin
+  const { data: product, error } = await db
     .from('products')
     .insert({
       sku:               data.sku || null,
@@ -84,9 +88,10 @@ export async function createProduct(data: ProductFormData) {
       is_primary:           img.is_primary,
       sort_order:           img.sort_order ?? idx,
     }));
-    await supabaseAdmin.from('product_images').insert(imageRows);
+    await db.from('product_images').insert(imageRows).throwOnError();
   }
 
+  revalidatePath('/', 'layout');
   revalidatePath('/products');
   revalidatePath('/admin/products');
   redirect('/admin/products');
@@ -94,9 +99,12 @@ export async function createProduct(data: ProductFormData) {
 
 // ─── UPDATE product ───────────────────────────────────────────
 export async function updateProduct(id: string, data: ProductFormData) {
+  const db = await requireAdmin();
+  id = idSchema.parse(id);
+  data = productSchema.parse(data);
   const slug = toSlug(data.name);
 
-  const { error } = await supabaseAdmin
+  const { error } = await db
     .from('products')
     .update({
       sku:               data.sku || null,
@@ -123,16 +131,18 @@ export async function updateProduct(id: string, data: ProductFormData) {
   // Handle image deletions
   const toDelete = data.images.filter((img) => img._delete && img.id);
   if (toDelete.length > 0) {
-    await supabaseAdmin
+    await db
       .from('product_images')
       .delete()
-      .in('id', toDelete.map((img) => img.id!));
+      .eq('product_id', id)
+      .in('id', toDelete.map((img) => img.id!))
+      .throwOnError();
   }
 
   // Insert new images (those without an id and not marked for deletion)
   const toInsert = data.images.filter((img) => !img.id && !img._delete && img.secure_url);
   if (toInsert.length > 0) {
-    await supabaseAdmin.from('product_images').insert(
+    await db.from('product_images').insert(
       toInsert.map((img, idx) => ({
         product_id:           id,
         cloudinary_public_id: img.cloudinary_public_id || `img_${idx}`,
@@ -140,13 +150,13 @@ export async function updateProduct(id: string, data: ProductFormData) {
         is_primary:           img.is_primary,
         sort_order:           img.sort_order ?? idx,
       }))
-    );
+    ).throwOnError();
   }
 
   // Update is_primary & sort_order for existing images
   const toUpdatePrimary = data.images.filter((img) => img.id && !img._delete);
   for (const img of toUpdatePrimary) {
-    await supabaseAdmin
+    await db
       .from('product_images')
       .update({
         is_primary:           img.is_primary,
@@ -154,9 +164,12 @@ export async function updateProduct(id: string, data: ProductFormData) {
         secure_url:           img.secure_url,
         cloudinary_public_id: img.cloudinary_public_id,
       })
-      .eq('id', img.id!);
+      .eq('product_id', id)
+      .eq('id', img.id!)
+      .throwOnError();
   }
 
+  revalidatePath('/', 'layout');
   revalidatePath('/products');
   revalidatePath(`/products/${slug}`);
   revalidatePath('/admin/products');
@@ -165,27 +178,36 @@ export async function updateProduct(id: string, data: ProductFormData) {
 
 // ─── DELETE product ───────────────────────────────────────────
 export async function deleteProduct(id: string) {
-  const { error } = await supabaseAdmin.from('products').delete().eq('id', id);
+  const db = await requireAdmin();
+  id = idSchema.parse(id);
+  const { error } = await db.from('products').delete().eq('id', id);
   if (error) throw new Error(`Failed to delete product: ${error.message}`);
 
+  revalidatePath('/', 'layout');
   revalidatePath('/products');
   revalidatePath('/admin/products');
 }
 
 // ─── TOGGLE product active status ────────────────────────────
 export async function toggleProductActive(id: string, isActive: boolean) {
-  const { error } = await supabaseAdmin
+  const db = await requireAdmin();
+  id = idSchema.parse(id);
+  const { error } = await db
     .from('products')
-    .update({ is_active: isActive })
+    .update({ is_active: z.boolean().parse(isActive) })
     .eq('id', id);
   if (error) throw new Error(`Failed to toggle product: ${error.message}`);
 
+  revalidatePath('/', 'layout');
   revalidatePath('/products');
   revalidatePath('/admin/products');
 }
 
 // ─── CATEGORY actions ─────────────────────────────────────────
 export async function createCategory(input: { name: string; slug?: string; description?: string } | string, desc?: string) {
+  const db = await requireAdmin();
+  if (typeof input === 'string') input = { name: input, description: desc };
+  input = categorySchema.parse(input);
   let name: string;
   let slug: string;
   let description: string | null = null;
@@ -200,16 +222,21 @@ export async function createCategory(input: { name: string; slug?: string; descr
     description = desc || null;
   }
 
-  const { error } = await supabaseAdmin.from('categories').insert({
+  const { error } = await db.from('categories').insert({
     name, slug, description,
   });
   if (error) return { error: error.message };
+  revalidatePath('/', 'layout');
   revalidatePath('/admin/categories');
+  revalidatePath('/', 'layout');
   revalidatePath('/products');
   return { success: true };
 }
 
 export async function updateCategory(id: string, input: { name: string; slug?: string; description?: string } | string, desc?: string) {
+  const db = await requireAdmin();
+  if (typeof input === 'string') input = { name: input, description: desc };
+  input = categorySchema.parse(input);
   let name: string;
   let slug: string;
   let description: string | null = null;
@@ -224,29 +251,37 @@ export async function updateCategory(id: string, input: { name: string; slug?: s
     description = desc || null;
   }
 
-  const { error } = await supabaseAdmin
+  const { error } = await db
     .from('categories')
     .update({ name, slug, description })
     .eq('id', id);
   if (error) return { error: error.message };
+  revalidatePath('/', 'layout');
   revalidatePath('/admin/categories');
+  revalidatePath('/', 'layout');
   revalidatePath('/products');
   return { success: true };
 }
 
 export async function deleteCategory(id: string) {
-  const { error } = await supabaseAdmin.from('categories').delete().eq('id', id);
+  const db = await requireAdmin();
+  id = idSchema.parse(id);
+  const { error } = await db.from('categories').delete().eq('id', id);
   if (error) return { error: error.message };
+  revalidatePath('/', 'layout');
   revalidatePath('/admin/categories');
   return { success: true };
 }
 
 export async function toggleCategoryActive(id: string, isActive: boolean) {
-  const { error } = await supabaseAdmin
+  const db = await requireAdmin();
+  id = idSchema.parse(id);
+  const { error } = await db
     .from('categories')
-    .update({ is_active: isActive })
+    .update({ is_active: z.boolean().parse(isActive) })
     .eq('id', id);
   if (error) return { error: error.message };
+  revalidatePath('/', 'layout');
   revalidatePath('/admin/categories');
   return { success: true };
 }

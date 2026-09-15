@@ -1,8 +1,9 @@
 // lib/supabase/server.ts
 // Server-side Supabase client for Next.js Server Components and Route Handlers.
-// Uses cookies to forward the user's auth session from the browser.
+// Anonymous catalogue reads; this client does not forward user sessions.
 // This file must only ever run on the server (no 'use client' directive here).
 
+import 'server-only';
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 

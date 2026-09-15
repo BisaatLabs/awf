@@ -4,7 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import { Pencil, Trash2, MoreHorizontal } from 'lucide-react';
-import { deleteProduct, toggleProductActive } from '@/app/admin/actions';
+import { deleteProduct, toggleProductActive } from '@/app/(admin)/admin/actions';
 
 type AdminProduct = {
   id: string;
@@ -26,13 +26,16 @@ export function ProductsTable({ products }: { products: AdminProduct[] }) {
     setDeletingId(id);
     try {
       await deleteProduct(id);
+    } catch {
+      alert('Unable to delete this product. Please try again.');
     } finally {
       setDeletingId(null);
     }
   }
 
   async function handleToggle(id: string, current: boolean) {
-    await toggleProductActive(id, !current);
+    try { await toggleProductActive(id, !current); }
+    catch { alert('Unable to update this product. Please try again.'); }
   }
 
   if (products.length === 0) {
@@ -63,7 +66,7 @@ export function ProductsTable({ products }: { products: AdminProduct[] }) {
       <tbody className="divide-y divide-gray-50">
         {products.map((p) => {
           const thumb = p.product_images.find((i) => i.is_primary)?.secure_url
-            ?? p.product_images.sort((a, b) => a.sort_order - b.sort_order)[0]?.secure_url
+            ?? [...p.product_images].sort((a, b) => a.sort_order - b.sort_order)[0]?.secure_url
             ?? null;
 
           return (

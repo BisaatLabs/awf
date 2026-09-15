@@ -3,7 +3,7 @@
 import { useState, useTransition } from 'react';
 import Image from 'next/image';
 import { Loader2, Plus, Trash2, Star } from 'lucide-react';
-import { createProduct, updateProduct, type ProductFormData } from '@/app/admin/actions';
+import { createProduct, updateProduct, type ProductFormData } from '@/app/(admin)/admin/actions';
 
 // ─── Types ────────────────────────────────────────────────────
 type Category = { id: string; name: string };

@@ -55,7 +55,7 @@ export const spaces: Space[] = [
     slug: 'office',
     name: 'Office',
     eyebrow: '02 / OFFICE',
-    description: 'Furniture designed for the way your team works, with considered details that keep the day moving.',
+    description: 'Functional and refined details that keep the day moving.',
     image: images.workspace,
     products: [
       'Slim Computer Desk',
@@ -67,7 +67,7 @@ export const spaces: Space[] = [
     slug: 'corporate',
     name: 'Corporate',
     eyebrow: '03 / CORPORATE',
-    description: 'A dependable furniture language for workplaces, meeting rooms and reception areas.',
+    description: 'Durable furniture language for workplaces, meeting rooms and reception areas.',
     image: images.conference,
     products: [
       'Three-Tier Shelf Table',
@@ -91,7 +91,7 @@ export const spaces: Space[] = [
     slug: 'institutional',
     name: 'Institutional',
     eyebrow: '05 / INSTITUTIONAL',
-    description: 'Practical, durable furniture packages developed for the rhythm of institutions.',
+    description: 'Reliable solutions for public spaces and long-term use.',
     image: images.wood,
     products: [
       'Black Standard Bunk Bed',

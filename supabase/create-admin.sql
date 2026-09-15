@@ -8,7 +8,7 @@ insert into public.user_roles (user_id, role)
 values (
   (select id from auth.users where email = 'YOUR_EMAIL@example.com'),
   'admin'
-);
+) on conflict (user_id) do update set role = excluded.role;
 
 -- Verify it worked:
 select u.email, r.role

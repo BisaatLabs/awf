@@ -3,15 +3,15 @@
 
 import Link from 'next/link';
 import { Plus } from 'lucide-react';
-import { createSupabaseServerClient } from '@/lib/supabase/ssr-client';
+import { requireAdmin } from '@/lib/supabase/ssr-client';
 import { ProductsTable } from '@/components/admin/ProductsTable';
 
 interface Props {
-  searchParams?: { q?: string; category?: string; status?: string };
+  searchParams: Promise<{ q?: string; category?: string; status?: string }>;
 }
 
 async function getProducts(q?: string, category?: string, status?: string) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await requireAdmin();
 
   let query = supabase
     .from('products')
@@ -36,15 +36,16 @@ async function getProducts(q?: string, category?: string, status?: string) {
 }
 
 async function getCategories() {
-  const supabase = createSupabaseServerClient();
+  const supabase = await requireAdmin();
   const { data } = await supabase.from('categories').select('id, name').order('name');
   return data ?? [];
 }
 
 export default async function AdminProductsPage({ searchParams }: Props) {
-  const q        = searchParams?.q        ?? '';
-  const category = searchParams?.category ?? '';
-  const status   = searchParams?.status   ?? '';
+  const filters = await searchParams;
+  const q        = filters?.q        ?? '';
+  const category = filters?.category ?? '';
+  const status   = filters?.status   ?? '';
 
   const [products, categories] = await Promise.all([
     getProducts(q, category, status),
@@ -114,7 +115,7 @@ export default async function AdminProductsPage({ searchParams }: Props) {
       </form>
 
       {/* Table */}
-      <div className="rounded-xl border border-gray-100 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-hidden">
+      <div className="rounded-xl border border-gray-100 bg-white shadow-[0_1px_3px_rgba(0,0,0,0.04)] overflow-x-auto">
         <ProductsTable products={products as any} />
       </div>
     </div>

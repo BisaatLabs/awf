@@ -5,14 +5,14 @@
 import { createServerClient } from '@supabase/ssr';
 import { cookies } from 'next/headers';
 import type { Database } from './types';
-import { supabaseAdmin } from './admin';
+import 'server-only';
 
 /**
  * Server Component / Route Handler client.
  * Reads & writes auth cookies so the session is forwarded correctly.
  */
-export function createSupabaseServerClient() {
-  const cookieStore = cookies();
+export async function createSupabaseServerClient() {
+  const cookieStore = await cookies();
 
   return createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -41,7 +41,7 @@ export function createSupabaseServerClient() {
  * Use this in Server Components / layouts to verify auth.
  */
 export async function getUser() {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const { data: { user } } = await supabase.auth.getUser();
   return user;
 }
@@ -51,16 +51,20 @@ export async function getUser() {
  * Returns true if the user is authenticated and is an admin in user_roles.
  */
 export async function isAdminUser(): Promise<boolean> {
-  const supabase = createSupabaseServerClient();
+  const supabase = await createSupabaseServerClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return false;
 
-  const { data } = await supabaseAdmin
+  const { data, error } = await supabase
     .from('user_roles')
     .select('role')
     .eq('user_id', user.id)
     .single();
 
-  if (!data) return true;
-  return data.role === 'admin';
+  return !error && data?.role === 'admin';
+}
+
+export async function requireAdmin() {
+  if (!(await isAdminUser())) throw new Error('Administrator access required.');
+  return createSupabaseServerClient();
 }

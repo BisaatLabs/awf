@@ -11,8 +11,9 @@ export function generateStaticParams() {
   return spaces.map((s) => ({ slug: s.slug }));
 }
 
-export function generateMetadata({ params }: { params: { slug: string } }): Metadata {
-  const s = spaces.find((s) => s.slug === params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const s = spaces.find((s) => s.slug === slug);
   if (!s) return { title: 'Space not found | Al Wahid Furnitures' };
   return {
     title: `${s.name} Furniture | Al Wahid Furnitures`,
@@ -20,8 +21,9 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
   };
 }
 
-export default async function SpaceDetail({ params }: { params: { slug: string } }) {
-  const space = spaces.find((s) => s.slug === params.slug);
+export default async function SpaceDetail({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const space = spaces.find((s) => s.slug === slug);
   if (!space) notFound();
 
   // Fetch real products matching this space from Supabase

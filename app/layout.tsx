@@ -1,10 +1,7 @@
+import { SiteShell } from '@/components/layout/SiteShell';
 import './globals.css';
 import type { Metadata } from 'next';
 import { Cormorant_Garamond, Manrope } from 'next/font/google';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
-import { SmoothScroll } from '@/components/layout/SmoothScroll';
-import { WhatsAppFloat } from '@/components/layout/WhatsAppFloat';
 
 const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
@@ -21,7 +18,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://alwahidfurnitures.com'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://alwahidfurnitures.com'),
   title: 'Al Wahid Furnitures | Bespoke Furniture Built for Every Space',
   description:
     'Discover bespoke furniture for modern homes, offices, and institutional spaces. Explore our catalogue or request a custom furniture quotation from Al Wahid Furnitures.',
@@ -37,11 +34,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className={`${cormorant.variable} ${manrope.variable}`}>
-        <SmoothScroll />
-        <Header />
-        <main>{children}</main>
-        <Footer />
-        <WhatsAppFloat />
+        <SiteShell>{children}</SiteShell>
       </body>
     </html>
   );

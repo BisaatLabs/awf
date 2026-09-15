@@ -1,8 +1,8 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useState } from 'react';
 import { Plus, Pencil, Trash2, Loader2, FolderKanban } from 'lucide-react';
-import { createCategory, updateCategory, deleteCategory } from '@/app/admin/actions';
+import { createCategory, updateCategory, deleteCategory } from '@/app/(admin)/admin/actions';
 
 interface CategoryItem {
   id: string;
@@ -13,8 +13,8 @@ interface CategoryItem {
 }
 
 export function CategoriesManager({ initialCategories }: { initialCategories: CategoryItem[] }) {
-  const [categories, setCategories] = useState(initialCategories);
-  const [isPending, startTransition] = useTransition();
+  const categories = initialCategories;
+  const [isPending, setIsPending] = useState(false);
 
   // Modal / Form state
   const [isOpen, setIsOpen] = useState(false);
@@ -59,7 +59,8 @@ export function CategoriesManager({ initialCategories }: { initialCategories: Ca
     }
 
     setError('');
-    startTransition(async () => {
+    setIsPending(true);
+    try {
       let res;
       if (editingCategory) {
         res = await updateCategory(editingCategory.id, formData);
@@ -74,7 +75,11 @@ export function CategoriesManager({ initialCategories }: { initialCategories: Ca
         // Optimistic refresh window reload / server revalidation
         window.location.reload();
       }
-    });
+    } catch {
+      alert('Unable to save the category. Check your input and administrator session.');
+    } finally {
+      setIsPending(false);
+    }
   };
 
   const handleDelete = async (cat: CategoryItem) => {
@@ -85,14 +90,19 @@ export function CategoriesManager({ initialCategories }: { initialCategories: Ca
 
     if (!confirm(`Are you sure you want to delete category "${cat.name}"?`)) return;
 
-    startTransition(async () => {
+    setIsPending(true);
+    try {
       const res = await deleteCategory(cat.id);
       if (res.error) {
         alert(res.error);
       } else {
         window.location.reload();
       }
-    });
+    } catch {
+      alert('Unable to save the category. Check your input and administrator session.');
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return (
@@ -108,7 +118,7 @@ export function CategoriesManager({ initialCategories }: { initialCategories: Ca
       </div>
 
       {/* Categories Grid / Table */}
-      <div className="bg-white border border-neutral-200/80 rounded-xl overflow-hidden shadow-sm">
+      <div className="bg-white border border-neutral-200/80 rounded-xl overflow-x-auto shadow-sm">
         <table className="w-full text-left text-sm">
           <thead className="bg-neutral-50/80 border-b border-neutral-200/80 text-neutral-500 font-medium">
             <tr>

@@ -2,11 +2,11 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
-import { createSupabaseServerClient } from '@/lib/supabase/ssr-client';
+import { requireAdmin } from '@/lib/supabase/ssr-client';
 import { ProductForm } from '@/components/admin/ProductForm';
 
 async function getProduct(id: string) {
-  const supabase = createSupabaseServerClient();
+  const supabase = await requireAdmin();
   const { data, error } = await supabase
     .from('products')
     .select(`
@@ -23,14 +23,14 @@ async function getProduct(id: string) {
 }
 
 async function getCategories() {
-  const supabase = createSupabaseServerClient();
+  const supabase = await requireAdmin();
   const { data } = await supabase.from('categories').select('id, name').order('name');
   return data ?? [];
 }
 
-export default async function EditProductPage({ params }: { params: { id: string } }) {
+export default async function EditProductPage({ params }: { params: Promise<{ id: string }> }) {
   const [product, categories] = await Promise.all([
-    getProduct(params.id),
+    getProduct((await params).id),
     getCategories(),
   ]);
 

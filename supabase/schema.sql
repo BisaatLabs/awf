@@ -104,7 +104,7 @@ create trigger categories_updated_at
 -- 6. HELPER — is_admin() (security definer = runs as owner)
 -- ─────────────────────────────────────────────────────────────
 create or replace function public.is_admin()
-returns boolean language sql security definer stable as $$
+returns boolean language sql security definer stable set search_path = '' as $
   select exists (
     select 1 from public.user_roles
     where user_id = auth.uid() and role = 'admin'

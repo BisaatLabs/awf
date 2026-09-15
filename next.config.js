@@ -1,11 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  eslint: { ignoreDuringBuilds: true },
+  distDir: process.env.AWF_BUILD_DIR || '.next',
   poweredByHeader: false,
   compress: true,
-  experimental: {
-    serverActions: true,
-  },
   images: {
     unoptimized: true,
     remotePatterns: [

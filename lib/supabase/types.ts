@@ -14,6 +14,7 @@ export interface Database {
   public: {
     Tables: {
       categories: {
+        Relationships: [];
         Row: {
           id: string;
           name: string;
@@ -48,6 +49,7 @@ export interface Database {
         };
       };
       products: {
+        Relationships: [{ foreignKeyName: 'products_category_id_fkey'; columns: ['category_id']; isOneToOne: false; referencedRelation: 'categories'; referencedColumns: ['id'] }];
         Row: {
           id: string;
           sku: string | null;
@@ -115,6 +117,7 @@ export interface Database {
         };
       };
       product_images: {
+        Relationships: [{ foreignKeyName: 'product_images_product_id_fkey'; columns: ['product_id']; isOneToOne: false; referencedRelation: 'products'; referencedColumns: ['id'] }];
         Row: {
           id: string;
           product_id: string;
@@ -146,6 +149,7 @@ export interface Database {
         };
       };
       user_roles: {
+        Relationships: [];
         Row: {
           id: string;
           user_id: string;

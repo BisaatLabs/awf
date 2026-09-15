@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, useEffect, useTransition } from 'react';
-import { Search, SlidersHorizontal, X, Loader2, RotateCcw, Sparkles } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Search, SlidersHorizontal, X, Loader2, RotateCcw, PackageSearch } from 'lucide-react';
 import type { DisplayProduct, PaginatedProductsResult } from '@/lib/supabase/queries';
 import { fetchProductsAction } from '@/app/actions/products';
 import { ProductCard } from './ProductCard';
@@ -29,7 +29,9 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
 
   // Loading states
   const [isLoadingMore, setIsLoadingMore] = useState(false);
-  const [isFiltering, startTransition] = useTransition();
+  const [isFiltering, setIsFiltering] = useState(false);
+  const [error, setError] = useState('');
+  const generation = useRef(0);
 
   // Dynamic category list from DB + fallback static items
   const categoryNames = [
@@ -48,7 +50,11 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
   // Refetch when filters or search change
   useEffect(() => {
     let isMounted = true;
-    startTransition(async () => {
+    generation.current += 1;
+    setIsFiltering(true);
+    setError('');
+    (async () => {
+      try {
       const result = await fetchProductsAction({
         page: 1,
         pageSize: 18,
@@ -64,7 +70,12 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
         setHasMore(result.hasMore);
         setPage(1);
       }
-    });
+      } catch {
+        if (isMounted) setError('Unable to load products. Please try again.');
+      } finally {
+        if (isMounted) setIsFiltering(false);
+      }
+    })();
 
     return () => {
       isMounted = false;
@@ -73,9 +84,10 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
 
   // Load more pages
   const handleLoadMore = async () => {
-    if (isLoadingMore || !hasMore) return;
+    if (isLoadingMore || isFiltering || !hasMore) return;
     setIsLoadingMore(true);
     const nextPage = page + 1;
+    const requestGeneration = generation.current;
 
     try {
       const result = await fetchProductsAction({
@@ -87,11 +99,12 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
         search: searchQuery,
       });
 
+      if (requestGeneration !== generation.current) return;
       setProducts((prev) => [...prev, ...result.products]);
       setPage(nextPage);
       setHasMore(result.hasMore);
     } catch (err) {
-      console.error('Failed to load more products:', err);
+      if (requestGeneration === generation.current) setError('Unable to load more products. Please try again.');
     } finally {
       setIsLoadingMore(false);
     }
@@ -187,6 +200,7 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
         </div>
       </div>
 
+      {error && <p role="alert" className="mb-4 text-sm text-red-700">{error}</p>}
       {/* Results Header */}
       <div className="mb-6 flex items-center justify-between">
         <p className="text-xs uppercase tracking-[.12em] text-[var(--charcoal)]/50">
@@ -250,7 +264,7 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
         /* Empty State */
         <div className="border border-[var(--line)] bg-[#faf8f5] py-20 px-6 text-center rounded-sm">
           <div className="mx-auto w-12 h-12 rounded-full bg-[var(--green)]/10 text-[var(--green)] flex items-center justify-center mb-4">
-            <Sparkles size={22} />
+            <PackageSearch size={22} />
           </div>
           <h3 className="font-display text-3xl text-[var(--charcoal)]">No furniture pieces found</h3>
           <p className="mt-2 text-sm text-[var(--charcoal)]/60 max-w-md mx-auto">

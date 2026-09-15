@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { LayoutDashboard, Package, Tag, LogOut, ExternalLink } from 'lucide-react';
@@ -22,20 +23,21 @@ export function AdminSidebar() {
   }
 
   return (
-    <aside className="flex h-screen w-[220px] shrink-0 flex-col border-r border-gray-100 bg-white">
+    <aside className="flex w-full md:h-screen md:w-[220px] shrink-0 flex-col border-r border-gray-100 bg-white">
       {/* Brand */}
-      <div className="flex items-center gap-3 px-6 py-5 border-b border-gray-100">
-        <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#1B4332]">
-          <span className="text-xs font-bold text-white">AW</span>
-        </div>
-        <div>
-          <p className="text-[13px] font-semibold text-gray-900 leading-none">Al Wahid</p>
-          <p className="text-[11px] text-gray-400 mt-0.5">Admin</p>
-        </div>
+      <div className="hidden md:flex flex-col items-center justify-center px-4 py-5 border-b border-gray-100">
+        <Image
+          src="/images/logo/logo.png"
+          alt="Al Wahid Furnitures"
+          width={130}
+          height={70}
+          className="object-contain"
+          priority
+        />
       </div>
 
       {/* Navigation */}
-      <nav className="flex-1 space-y-0.5 px-3 py-4">
+      <nav className="flex md:block md:flex-1 space-y-0.5 px-3 py-2 md:py-4">
         {nav.map(({ label, href, icon: Icon }) => {
           const isActive =
             href === '/admin'
@@ -60,7 +62,7 @@ export function AdminSidebar() {
       </nav>
 
       {/* Footer */}
-      <div className="border-t border-gray-100 px-3 py-4 space-y-0.5">
+      <div className="flex md:block border-t border-gray-100 px-3 py-2 md:py-4 space-y-0.5">
         <Link
           href="/"
           target="_blank"
