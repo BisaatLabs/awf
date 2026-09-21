@@ -1,8 +1,11 @@
 'use client';
 
-import { useState, useTransition } from 'react';
+import { useState, useRef } from 'react';
 import Image from 'next/image';
-import { Loader2, Plus, Trash2, Star } from 'lucide-react';
+import { useRouter } from 'next/navigation';
+import { uploadProductImage } from '@/app/(admin)/admin/uploads';
+import { IMAGE_TYPES, MAX_IMAGE_BYTES } from '@/lib/admin-security';
+import { Loader2, Upload, Trash2, Star } from 'lucide-react';
 import { createProduct, updateProduct, type ProductFormData } from '@/app/(admin)/admin/actions';
 
 // ─── Types ────────────────────────────────────────────────────
@@ -93,7 +96,10 @@ export function ProductForm({
   categories: Category[];
 }) {
   const isEdit = Boolean(product);
-  const [, startTransition] = useTransition();
+  const router = useRouter();
+  const uploadLock = useRef(false);
+  const [uploading, setUploading] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState('');
 
@@ -124,7 +130,7 @@ export function ProductForm({
       sort_order:           img.sort_order,
     })) ?? []
   );
-  const [newImageUrl, setNewImageUrl] = useState('');
+
 
   // ─── Material toggle ────────────────────────────────────────
   function toggleMaterial(m: string) {
@@ -134,28 +140,47 @@ export function ProductForm({
   }
 
   // ─── Image helpers ──────────────────────────────────────────
-  function addImage() {
-    const url = newImageUrl.trim();
-    if (!url) return;
-
-    // Extract public_id from URL (last segment before query string, no extension)
-    const parts = url.split('/').pop()?.split('.')[0] ?? url;
-    const newImg: ImageRow = {
-      cloudinary_public_id: parts,
-      secure_url:           url,
-      is_primary:           images.filter((i) => !i._delete).length === 0,
-      sort_order:           images.filter((i) => !i._delete).length,
-    };
-    setImages((prev) => [...prev, newImg]);
-    setNewImageUrl('');
+  async function uploadImages(event: React.ChangeEvent<HTMLInputElement>) {
+    const files = Array.from(event.target.files || []);
+    event.target.value = '';
+    if (!files.length || uploadLock.current || loading) return;
+    if (images.filter(img => !img._delete).length + files.length > 50) {
+      setError('A product can have up to 50 images.'); return;
+    }
+    if (files.some(file => !IMAGE_TYPES.includes(file.type) || !file.size || file.size > MAX_IMAGE_BYTES)) {
+      setError('Choose JPG, PNG, or WebP files smaller than 3 MB each.'); return;
+    }
+    uploadLock.current = true; setUploading(true); setError('');
+    let completed = 0;
+    try {
+      for (const file of files) {
+        setUploadStatus('Uploading ' + (completed + 1) + ' of ' + files.length + '…');
+        const data = new FormData(); data.set('file', file);
+        const result = await uploadProductImage(data);
+        if (result.error || !result.image) throw new Error(result.error || 'Image upload failed.');
+        const uploaded = result.image;
+        setImages(previous => [...previous, { ...uploaded,
+          is_primary: !previous.some(img => !img._delete && img.is_primary),
+          sort_order: previous.filter(img => !img._delete).length,
+        }]);
+        completed++;
+      }
+      setUploadStatus(completed + ' image(s) uploaded. Save the product to keep these changes.');
+    } catch (error) {
+      setError(error instanceof Error ? error.message : 'Upload failed. Please try again.');
+      setUploadStatus(completed ? completed + ' image(s) uploaded. Select the remaining files to retry.' : '');
+    } finally { uploadLock.current = false; setUploading(false); }
   }
 
   function removeImage(idx: number) {
-    setImages((prev) =>
-      prev.map((img, i) =>
-        i === idx ? { ...img, _delete: true } : img
-      )
-    );
+    setImages(previous => {
+      const next = previous.map((image, index) => index === idx ? { ...image, _delete: true, is_primary: false } : image);
+      if (!next.some(image => !image._delete && image.is_primary)) {
+        const first = next.findIndex(image => !image._delete);
+        if (first >= 0) next[first] = { ...next[first], is_primary: true };
+      }
+      return next;
+    });
   }
 
   function setPrimary(idx: number) {
@@ -169,6 +194,7 @@ export function ProductForm({
   // ─── Submit ─────────────────────────────────────────────────
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
+    if (loading || uploadLock.current) return;
     setError('');
 
     if (!name.trim()) { setError('Product name is required.'); return; }
@@ -179,7 +205,7 @@ export function ProductForm({
       short_description: shortDesc, materials, finish,
       width_mm: widthMm, depth_mm: depthMm, height_mm: heightMm,
       price_display: price, customizable, featured, is_active: isActive,
-      images,
+      images: images.filter(img => !img._delete || img.id),
     };
 
     try {
@@ -188,6 +214,8 @@ export function ProductForm({
       } else {
         await createProduct(data);
       }
+      router.push('/admin/products');
+      router.refresh();
     } catch (err: any) {
       setError(err.message ?? 'An error occurred. Please try again.');
       setLoading(false);
@@ -432,6 +460,7 @@ export function ProductForm({
                   <div className="flex items-center justify-between border-t border-gray-100 px-2 py-1.5">
                     <button
                       type="button"
+                      disabled={loading || uploading}
                       onClick={() => setPrimary(idx)}
                       title="Set as primary"
                       className={`flex items-center gap-1 text-[11px] font-medium transition ${
@@ -445,6 +474,8 @@ export function ProductForm({
                     </button>
                     <button
                       type="button"
+                      disabled={loading || uploading}
+                      aria-label="Remove product image"
                       onClick={() => removeImage(idx)}
                       className="text-gray-300 hover:text-red-500 transition"
                     >
@@ -457,39 +488,17 @@ export function ProductForm({
           </div>
         )}
 
-        {/* Add new image by URL */}
         <div className="rounded-lg border border-dashed border-gray-200 p-4">
-          <p className="mb-3 text-xs font-medium text-gray-500">
-            Add image by Cloudinary URL
-          </p>
-          <div className="flex gap-2">
-            <input
-              type="url"
-              value={newImageUrl}
-              onChange={(e) => setNewImageUrl(e.target.value)}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter') { e.preventDefault(); addImage(); }
-              }}
-              placeholder="https://res.cloudinary.com/…/image/upload/…"
-              className="flex-1 rounded-lg border border-gray-200 px-3.5 py-2 text-sm outline-none placeholder:text-gray-400 focus:border-[#1B4332] focus:ring-2 focus:ring-[#1B4332]/10 transition"
-            />
-            <button
-              type="button"
-              onClick={addImage}
-              className="flex items-center gap-1.5 rounded-lg bg-gray-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-gray-700"
-            >
-              <Plus size={15} /> Add
-            </button>
-          </div>
-          <p className="mt-2 text-[11px] text-gray-400">
-            Copy the secure URL from the Cloudinary Media Library and paste it above.
-          </p>
+          <label htmlFor="product-images" className="mb-3 flex items-center gap-2 text-sm font-medium"><Upload size={16} /> Upload product images</label>
+          <input id="product-images" type="file" accept="image/jpeg,image/png,image/webp" multiple disabled={loading || uploading} onChange={uploadImages} className="block w-full text-sm file:mr-4 file:rounded-lg file:border-0 file:bg-gray-900 file:px-4 file:py-2 file:text-white disabled:opacity-60" />
+          <p className="mt-3 text-xs text-gray-500">JPG, PNG, or WebP. Maximum 3 MB each. Save the product after uploading.</p>
+          {uploadStatus && <p role="status" aria-live="polite" className="mt-3 flex items-center gap-2 text-sm text-green-800">{uploading && <Loader2 size={15} className="animate-spin" />}{uploadStatus}</p>}
         </div>
       </section>
 
       {/* ── Error + Submit ───────────────────────────────── */}
       {error && (
-        <div className="rounded-lg border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600">
+        <div role="alert" className="rounded-lg border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600">
           {error}
         </div>
       )}
@@ -497,7 +506,7 @@ export function ProductForm({
       <div className="flex items-center gap-3">
         <button
           type="submit"
-          disabled={loading}
+          disabled={loading || uploading}
           className="flex items-center gap-2 rounded-lg bg-[#1B4332] px-6 py-2.5 text-sm font-medium text-white transition hover:bg-[#14532d] disabled:opacity-60"
         >
           {loading && <Loader2 size={15} className="animate-spin" />}

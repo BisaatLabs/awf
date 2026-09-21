@@ -3,6 +3,7 @@ const nextConfig = {
   distDir: process.env.AWF_BUILD_DIR || '.next',
   poweredByHeader: false,
   compress: true,
+  experimental: { serverActions: { bodySizeLimit: '4mb' } },
   images: {
     unoptimized: true,
     remotePatterns: [

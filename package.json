@@ -74,10 +74,10 @@
     "tailwindcss-animate": "^1.0.7",
     "typescript": "5.2.2",
     "vaul": "^0.9.9",
-    "zod": "^3.23.8"
+    "zod": "^3.23.8",
+    "cloudinary": "^2.11.0"
   },
   "devDependencies": {
-    "cloudinary": "^2.11.0",
     "dotenv": "^17.4.2",
     "tsx": "^4.23.13"
   },

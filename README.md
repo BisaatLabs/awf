@@ -24,3 +24,9 @@ npm run build
 The build needs access to Google Fonts and Supabase. Run `node scripts/check-services.cjs` for read-only service checks.
 
 See [DEPLOYMENT.md](DEPLOYMENT.md) for the main branch, Supabase setup, and Vercel deployment guide. Do not run the seed script as part of a build: it updates existing catalogue records.
+
+## Admin features
+
+- Products: select images from your device, then save the product to attach them. Cloudinary holds the image files; Supabase holds product/image records.
+- Settings: change your own administrator password with current-password verification.
+- Tests: `node scripts/check-admin-features.cjs` checks the security and service flows with mocked providers. It does not change a live password or upload test images.

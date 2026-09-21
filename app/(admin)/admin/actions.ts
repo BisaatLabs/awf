@@ -5,7 +5,6 @@
 'use server';
 
 import { revalidatePath } from 'next/cache';
-import { redirect }       from 'next/navigation';
 import { requireAdmin } from '@/lib/supabase/ssr-client';
 import { productSchema, categorySchema, idSchema } from '@/lib/admin-validation';
 import { z } from 'zod';
@@ -94,7 +93,7 @@ export async function createProduct(data: ProductFormData) {
   revalidatePath('/', 'layout');
   revalidatePath('/products');
   revalidatePath('/admin/products');
-  redirect('/admin/products');
+  return { success: true };
 }
 
 // ─── UPDATE product ───────────────────────────────────────────
@@ -173,7 +172,7 @@ export async function updateProduct(id: string, data: ProductFormData) {
   revalidatePath('/products');
   revalidatePath(`/products/${slug}`);
   revalidatePath('/admin/products');
-  redirect('/admin/products');
+  return { success: true };
 }
 
 // ─── DELETE product ───────────────────────────────────────────

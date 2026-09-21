@@ -3,10 +3,11 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
-import { LayoutDashboard, Package, Tag, LogOut, ExternalLink } from 'lucide-react';
+import { LayoutDashboard, Package, Tag, Settings, LogOut, ExternalLink } from 'lucide-react';
 import { supabase } from '@/lib/supabase/client';
 
 const nav = [
+  { label: 'Settings', href: '/admin/settings', icon: Settings },
   { label: 'Dashboard',  href: '/admin',            icon: LayoutDashboard },
   { label: 'Products',   href: '/admin/products',   icon: Package },
   { label: 'Categories', href: '/admin/categories', icon: Tag },
@@ -37,7 +38,7 @@ export function AdminSidebar() {
       </div>
 
       {/* Navigation */}
-      <nav className="flex md:block md:flex-1 space-y-0.5 px-3 py-2 md:py-4">
+      <nav className="flex flex-wrap md:block md:flex-1 space-y-0.5 px-3 py-2 md:py-4">
         {nav.map(({ label, href, icon: Icon }) => {
           const isActive =
             href === '/admin'

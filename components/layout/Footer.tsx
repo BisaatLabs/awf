@@ -28,13 +28,19 @@ export function Footer() {
     <footer className="bg-[var(--charcoal)] text-[var(--ivory)]">
       <div className="container-wide grid gap-12 py-16 md:grid-cols-[1.3fr_1fr_1fr_auto]">
         <div>
-          <Image
-            src={LOGO_SRC}
-            alt="Al Wahid Furnitures"
-            width={180}
-            height={70}
-            className="h-14 w-auto object-contain object-left [filter:brightness(0)_invert(1)] opacity-90"
-          />
+          <Link
+            href="/"
+            aria-label="Al Wahid Furnitures home"
+            className="inline-flex transition-opacity hover:opacity-80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--stone)] focus-visible:ring-offset-4 focus-visible:ring-offset-[var(--charcoal)]"
+          >
+            <Image
+              src={LOGO_SRC}
+              alt="Al Wahid Furnitures"
+              width={180}
+              height={130}
+              className="h-auto w-36 object-contain sm:w-40"
+            />
+          </Link>
           <p className="mt-5 max-w-xs font-display text-2xl leading-tight text-[var(--ivory)]">
             Built for Every Space.
           </p>

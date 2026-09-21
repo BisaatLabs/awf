@@ -72,11 +72,11 @@ Do not force-push or reset main. The database and production deployment are mana
 | `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Required; anonymous/publishable client key, never the service-role key |
 | `NEXT_PUBLIC_SITE_URL` | Set to the final HTTPS production origin; update and redeploy after adding a domain |
 | `NEXT_PUBLIC_CONTACT_EMAIL` | Optional real business email; email block is hidden when unset |
-| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | Not required for current runtime: images use full stored delivery URLs; needed by local Cloudinary scripts |
+| `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME` | Required for admin image uploads; existing images use full stored delivery URLs |
 | `SUPABASE_SERVICE_ROLE_KEY` | Local setup/seed scripts only; do not add to Vercel for this implementation |
-| `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` | Local Cloudinary scripts only; not required on Vercel |
+| `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET` | Required on the server for admin image uploads; never prefix these with NEXT_PUBLIC_ |
 
-The Cloudinary admin form accepts existing HTTPS image URLs; it does not upload files to Cloudinary. Upload assets in Cloudinary, then copy their delivery URLs into the product form. The catalogue applies Cloudinary resizing/format transformations; Next.js image optimization is intentionally disabled to avoid double-processing.
+In Add/Edit Product, select JPG, PNG, or WebP files (up to 3 MB each). Authenticated server actions upload them to Cloudinary; saving the product stores the returned public IDs and URLs in Supabase product_images. Uploads run one at a time so each request fits Vercel limits. Abandoning the form or removing an uploaded image leaves its asset in Cloudinary; remove unused assets in the Media Library when needed. No Supabase Storage bucket or database migration is needed. The catalogue applies Cloudinary resizing/format transformations; Next.js image optimization is intentionally disabled to avoid double-processing.
 
 Click Deploy. Future merges/pushes to main trigger production deployments. Environment variable changes require a new deployment; public values are embedded during the build.
 
@@ -104,3 +104,7 @@ Read-only service checks confirm catalogue access, hidden inactive products, and
 - [Vercel Node.js versions](https://vercel.com/docs/functions/runtimes/node-js/node-js-versions)
 - [Supabase row-level security](https://supabase.com/docs/guides/database/postgres/row-level-security)
 - [Next.js patched release](https://nextjs.org/blog/august-2026-security-release)
+
+## Administrator password changes
+
+Open Admin > Settings. Enter the current password, a different new password (12–72 characters, at most 72 UTF-8 bytes), and confirmation. The server verifies the account and current password, updates Supabase Auth, and revokes refresh sessions. Sign in again afterward. Supabase access tokens already issued can remain valid until expiry. No service-role key is used. To enforce current-password verification even for direct Supabase API calls, enable Require current password when changing password in Supabase Auth settings.
