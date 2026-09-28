@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110 100" fill="none">
+  <!-- Top Black Oval Ring of 'e' -->
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M 55 12 C 73 12 88 23 88 38 C 88 43 85 47 80 50 C 72 45 61 42 49 42 C 34 42 22 47 18 53 C 17 48 17 43 18 38 C 22 23 37 12 55 12 Z M 53 23 C 65 23 72 29 72 35 C 72 37 70 39 66 40 C 58 37 49 36 41 38 C 37 38 35 37 35 35 C 35 29 42 23 53 23 Z" fill="#111111"/>
+
+  <!-- Lower Green Crescent Swoosh of 'e' -->
+  <path d="M 17 50 C 17 64 34 76 56 76 C 68 76 79 72 87 65 C 92 60 92 57 88 56 C 82 64 70 70 56 70 C 38 70 24 61 21 49 C 19 49 18 49 17 50 Z" fill="#27B34B"/>
+
+  <!-- Wordmark 'easypaisa' -->
+  <g transform="translate(4, 76)">
+    <!-- Base text in bold black -->
+    <text x="51" y="16" text-anchor="middle" font-family="'Century Gothic', 'Montserrat', 'Inter', 'Helvetica Neue', Arial, sans-serif" font-weight="800" font-size="15.5" fill="#111111" letter-spacing="-0.3">easypaisa</text>
+    
+    <!-- Green Accent Swoosh under first 'e' -->
+    <path d="M 8 16.5 C 10 19 14 19 17 17.5 C 15 18.2 11 18.2 9 16.8 Z" fill="#27B34B"/>
+    
+    <!-- Green Dot on the 'i' (replacing black dot of i) -->
+    <circle cx="73.8" cy="7.2" r="1.6" fill="#27B34B"/>
+  </g>
+</svg>

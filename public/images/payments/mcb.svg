@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 95" fill="none">
+  <!-- MCB Green Dome / Tree Emblem -->
+  <g fill="#00A859">
+    <!-- Top Leaf Cap -->
+    <path d="M 50 12 C 61 12 71 16 78 22 C 70 20 60 21 50 26 C 40 21 30 20 22 22 C 29 16 39 12 50 12 Z"/>
+    
+    <!-- Upper Left Leaf Branch -->
+    <path d="M 20 26 C 30 24 40 25 48 30 L 48 36 C 38 31 28 30 17 33 C 17.5 30.5 18.6 28.2 20 26 Z"/>
+    <!-- Upper Right Leaf Branch -->
+    <path d="M 80 26 C 70 24 60 25 52 30 L 52 36 C 62 31 72 30 83 33 C 82.5 30.5 81.4 28.2 80 26 Z"/>
+
+    <!-- Middle Left Branch -->
+    <path d="M 16 37 C 27 34 38 35 48 40 L 48 47 C 37 42 27 41 15 45 C 15.1 42.2 15.4 39.5 16 37 Z"/>
+    <!-- Middle Right Branch -->
+    <path d="M 84 37 C 73 34 62 35 52 40 L 52 47 C 63 42 73 41 85 45 C 84.9 42.2 84.6 39.5 84 37 Z"/>
+
+    <!-- Lower Left Base Quarter -->
+    <path d="M 15 49 C 27 45 37 46 46 51 L 46 57 L 15 57 C 15 54.2 15 51.5 15 49 Z"/>
+    <!-- Lower Right Base Quarter -->
+    <path d="M 85 49 C 73 45 63 46 54 51 L 54 57 L 85 57 C 85 54.2 85 51.5 85 49 Z"/>
+  </g>
+
+  <!-- MCB Bold Serif Typography -->
+  <text x="50" y="77" text-anchor="middle" font-family="'Times New Roman', 'Baskerville', 'Playfair Display', serif" font-weight="900" font-size="23" fill="#26338B" letter-spacing="0.5">MCB</text>
+
+  <!-- Green Base Stripe -->
+  <rect x="15" y="83" width="70" height="6.5" rx="0.5" fill="#00A859"/>
+</svg>

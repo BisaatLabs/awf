@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 130 115" fill="none">
+  <!-- Dynamic Jazz Wings / Dual Crescent Emblem -->
+  <g transform="translate(18, 8)">
+    <!-- Left Golden-Yellow Crescent Wing -->
+    <path d="M 19 6 C 24 6 36 12 40 22 C 43 29 41 38 33 46 C 25 54 13 60 2 64 C 7 65 14 64 21 59 C 32 51 40 39 37 27 C 35 18 28 11 19 6 Z" fill="#FFC20E"/>
+    <!-- Solid Left Body Fill to match exact curvature -->
+    <path d="M 19 6 C 16 6 15 10 15 17 L 15 44 C 15 54 8 60 1 64 C 9 66 18 63 26 56 C 36 47 41 36 38 23 C 36 15 28 7 19 6 Z" fill="#FFC20E"/>
+
+    <!-- Right Bold Red Crescent Wing -->
+    <path d="M 43 8 C 53 8 64 12 70 17 C 62 23 57 32 56 42 C 55 52 59 61 70 65 C 61 67 48 64 40 55 C 33 47 31 38 34 29 C 37 20 40 13 43 8 Z" fill="#ED1C24"/>
+  </g>
+
+  <!-- JazzCash Typography in Bold Black -->
+  <text x="65" y="98" text-anchor="middle" font-family="'Century Gothic', 'Arial Black', 'Inter', 'Helvetica Neue', sans-serif" font-weight="900" font-size="20" fill="#111111" letter-spacing="-0.5">JazzCash</text>
+</svg>

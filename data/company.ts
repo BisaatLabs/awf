@@ -1,0 +1,61 @@
+export const COMPANY_INFO = {
+  name: 'Al Wahid Furnitures',
+  tagline: 'Built for Every Space.',
+  established: 1974,
+  address: {
+    shop: 'Shop #19 & 20, Zeenat Square',
+    area: 'Liaquatabad',
+    city: 'Karachi',
+    country: 'Pakistan',
+    full: 'Shop #19 & 20, Zeenat Square, Liaquatabad, Karachi, Pakistan',
+    googleMapsUrl: 'https://www.google.com/maps/search/?api=1&query=Shop+%2319%2620+Zeenat+Square+Liaquatabad+Karachi+Pakistan',
+    googleMapsEmbedUrl: 'https://maps.google.com/maps?q=Shop+%2319%2620+,Zeenat+Square,+liaquatabad,+Karachi,+Pakistan&t=&z=16&ie=UTF8&iwloc=&output=embed',
+  },
+  contact: {
+    email: 'Hafizasadawf@gmail.com',
+    phoneDisplay: '+92 300 2294573',
+    phoneRaw: '03002294573',
+    whatsapp: '923333444300',
+    whatsappUrl: 'https://wa.me/923333444300',
+    whatsappAlternative: '923002294573',
+  },
+  social: {
+    instagram: {
+      name: 'Instagram',
+      handle: '@furnitureawf',
+      url: 'https://www.instagram.com/furnitureawf/',
+    },
+    facebook: {
+      name: 'Facebook',
+      handle: 'alwahidfurniture',
+      url: 'http://facebook.com/alwahidfurniture',
+    },
+  },
+  paymentMethods: [
+    {
+      id: 'mcb',
+      name: 'MCB Bank',
+      bankName: 'MCB Bank Limited',
+      accountTitle: 'Alwahid Steel furniture',
+      accountNumber: '0098301010010445',
+      type: 'Bank Account',
+      note: 'Online transfer, IBFT, ATM transfer or over-the-counter deposit',
+    },
+    {
+      id: 'easypaisa',
+      name: 'Easypaisa',
+      accountTitle: 'Hafiz Mohammad Asad siddiqui',
+      accountNumber: '03002294573',
+      type: 'Mobile Wallet',
+      note: 'Instant mobile account transfer via Easypaisa App or USSD',
+    },
+    {
+      id: 'jazzcash',
+      name: 'JazzCash',
+      accountTitle: 'Hafiz Mohammad Asad siddiqui',
+      accountNumber: '03002294573',
+      type: 'Mobile Wallet',
+      note: 'Instant mobile account transfer via JazzCash App or USSD',
+    },
+  ],
+};
