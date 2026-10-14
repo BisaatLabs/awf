@@ -4,7 +4,7 @@ import { WHATSAPP_BASE_URL } from '@/lib/whatsapp';
 
 export function FinalCTA() {
   return (
-    <section className="relative overflow-hidden bg-[var(--green)] py-32 ring-pattern">
+    <section className="final-cta relative overflow-hidden bg-[var(--green)] py-32 ring-pattern">
       <div className="container-wide relative z-10 text-center text-[var(--ivory)]">
         <p className="eyebrow text-[var(--ivory)]/60">07 / Start</p>
         <h2 className="mx-auto mt-4 max-w-3xl font-display text-5xl leading-[.92] tracking-[-.03em] sm:text-7xl">
@@ -16,7 +16,7 @@ export function FinalCTA() {
         <div className="mt-10 flex flex-wrap justify-center gap-4">
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-[var(--ivory)] px-6 py-4 text-xs font-bold uppercase tracking-[.13em] text-[var(--green)] transition hover:bg-[var(--walnut)] hover:text-[var(--ivory)]"
+            className="mobile-action inline-flex items-center gap-2 bg-[var(--ivory)] px-6 py-4 text-xs font-bold uppercase tracking-[.13em] text-[var(--green)] transition hover:bg-[var(--walnut)] hover:text-[var(--ivory)]"
           >
             Request a Quote <ArrowRight size={15} />
           </Link>
@@ -24,7 +24,7 @@ export function FinalCTA() {
             href={WHATSAPP_BASE_URL}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 border border-[var(--ivory)]/40 px-6 py-4 text-xs font-bold uppercase tracking-[.13em] text-[var(--ivory)] transition hover:bg-[var(--ivory)] hover:text-[var(--green)]"
+            className="mobile-action inline-flex items-center gap-2 border border-[var(--ivory)]/40 px-6 py-4 text-xs font-bold uppercase tracking-[.13em] text-[var(--ivory)] transition hover:bg-[var(--ivory)] hover:text-[var(--green)]"
           >
             <MessageCircle size={15} /> Chat on WhatsApp
           </a>

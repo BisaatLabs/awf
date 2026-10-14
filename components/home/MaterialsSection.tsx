@@ -214,7 +214,7 @@ export function MaterialsSection() {
               </div>
               <Link
                 href="/custom-furniture"
-                className="group inline-flex shrink-0 items-center gap-2 rounded-xl bg-[var(--green)] px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-[var(--ivory)] transition-all duration-300 hover:bg-[#1A3326] hover:shadow-md"
+                className="mobile-action group inline-flex shrink-0 items-center gap-2 rounded-xl bg-[var(--green)] px-5 py-3 text-xs font-bold uppercase tracking-[0.14em] text-[var(--ivory)] transition-all duration-300 hover:bg-[#1A3326] hover:shadow-md"
               >
                 <span>Request Swatches</span>
                 <ArrowRight

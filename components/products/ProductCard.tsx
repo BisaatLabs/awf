@@ -115,7 +115,7 @@ export function ProductCard({ product }: { product: DisplayProduct }) {
           href={createProductWhatsAppUrl(product)}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center justify-center gap-2 bg-[#7B5135] hover:bg-[#633F27] text-white min-h-11 px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-[0.12em] transition-all duration-300 shadow-xs hover:shadow-md hover:scale-[1.02]"
+          className="mobile-action inline-flex items-center justify-center gap-2 bg-[#7B5135] hover:bg-[#633F27] text-white min-h-11 px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-[0.12em] transition-all duration-300 shadow-xs hover:shadow-md hover:scale-[1.02]"
         >
           Enquire Now
           <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />

@@ -45,7 +45,7 @@ export function Hero() {
             <div className="hero-actions flex flex-wrap items-center gap-3.5 pt-1 animate-fade-in-up-delay-2">
               <Link
                 href="/products"
-                className="group inline-flex items-center gap-2.5 bg-[#1B3328] hover:bg-[#14261e] text-[var(--ivory)] px-7 py-3.5 text-xs font-bold uppercase tracking-[0.14em] rounded-xs shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
+                className="mobile-action group inline-flex items-center gap-2.5 bg-[#1B3328] hover:bg-[#14261e] text-[var(--ivory)] px-7 py-3.5 text-xs font-bold uppercase tracking-[0.14em] rounded-xs shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
               >
                 View Collection
                 <ArrowRight size={14} className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -53,7 +53,7 @@ export function Hero() {
 
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center border border-[#141A15]/20 hover:border-[var(--green)] bg-white/70 hover:bg-white text-[#141A15] px-7 py-3.5 text-xs font-bold uppercase tracking-[0.14em] rounded-xs transition-all duration-300 hover:-translate-y-0.5 shadow-2xs"
+                className="mobile-action inline-flex items-center justify-center border border-[#141A15]/20 hover:border-[var(--green)] bg-white/70 hover:bg-white text-[#141A15] px-7 py-3.5 text-xs font-bold uppercase tracking-[0.14em] rounded-xs transition-all duration-300 hover:-translate-y-0.5 shadow-2xs"
               >
                 Request a Quote
               </Link>

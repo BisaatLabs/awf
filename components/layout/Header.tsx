@@ -92,7 +92,7 @@ export function Header() {
                 <Menu size={20} />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full overflow-y-auto bg-[var(--ivory)] px-6 pb-[max(24px,env(safe-area-inset-bottom))] sm:max-w-sm">
+            <SheetContent side="right" className="mobile-menu w-full overflow-y-auto bg-[var(--ivory)] px-6 pb-[max(24px,env(safe-area-inset-bottom))] sm:max-w-sm">
               <SheetHeader>
                 <SheetTitle className="font-display text-3xl text-[var(--green)]">
                   Al Wahid

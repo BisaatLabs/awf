@@ -93,7 +93,7 @@ export function QuoteForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="grid gap-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="quote-form grid gap-6">
       {sent && (
         <div className="border border-[var(--green)] bg-[var(--green)]/10 p-4 text-sm text-[var(--green)]">
           Your enquiry has been prepared in WhatsApp. Please send it there to continue the conversation with our workshop team.
@@ -183,7 +183,7 @@ export function QuoteForm() {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-fit bg-[var(--green)] px-6 py-4 text-xs font-bold uppercase tracking-[.13em] text-[var(--ivory)] transition hover:bg-[var(--walnut)] disabled:opacity-50"
+        className="mobile-action w-fit bg-[var(--green)] px-6 py-4 text-xs font-bold uppercase tracking-[.13em] text-[var(--ivory)] transition hover:bg-[var(--walnut)] disabled:opacity-50"
       >
         Build My Enquiry
       </button>

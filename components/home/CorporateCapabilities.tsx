@@ -49,7 +49,7 @@ export function CorporateCapabilities() {
             </a>
           </div>
 
-          <div className="grid gap-px bg-[var(--line)] sm:grid-cols-2">
+          <div className="capability-grid grid gap-px bg-[var(--line)] sm:grid-cols-2">
             {CAPABILITIES.map((cap) => (
               <div key={cap.title} className="bg-[var(--ivory)] p-8">
                 <cap.icon size={24} className="text-[var(--walnut)]" />
