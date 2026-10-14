@@ -38,7 +38,7 @@ export function FeaturedProductsClient({ initialProducts }: { initialProducts: D
         </p>
 
         {/* Filter Tabs matching reference pill style */}
-        <div className="pt-4 flex flex-wrap items-center justify-center gap-2.5">
+        <div className="featured-filters pt-4 flex flex-wrap items-center justify-center gap-2.5">
           {FEATURED_TABS.map((tab) => {
             const isActive = activeTab === tab;
             return (
@@ -46,7 +46,8 @@ export function FeaturedProductsClient({ initialProducts }: { initialProducts: D
                 key={tab}
                 type="button"
                 onClick={() => setActiveTab(tab)}
-                className={`px-5 py-2 rounded-full text-xs font-semibold tracking-wider transition-all duration-200 cursor-pointer ${
+                aria-pressed={isActive}
+                className={`min-h-11 shrink-0 min-h-11 shrink-0 px-5 py-2 rounded-full text-xs font-semibold tracking-wider transition-all duration-200 cursor-pointer ${
                   isActive
                     ? 'bg-[#7B5135] text-white shadow-sm scale-105'
                     : 'bg-transparent text-[#141A15]/70 border border-[#141A15]/15 hover:border-[#7B5135] hover:text-[#7B5135]'

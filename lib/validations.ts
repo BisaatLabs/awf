@@ -1,6 +1,7 @@
 import { z } from 'zod';
 
 export const quoteSchema = z.object({
+  // validations for name , phone number , project type 
   fullName: z.string().min(2, 'Please enter your name'), company: z.string().optional(),
   email: z.string().email('Enter a valid email'), phone: z.string().min(7, 'Enter a phone number'),
   projectType: z.string().min(1, 'Choose a project type'), spaceType: z.string().min(1, 'Choose a space type'),

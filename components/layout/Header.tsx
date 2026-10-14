@@ -32,7 +32,7 @@ export function Header() {
   }
 
   return (
-    <header className="fixed top-0 z-40 w-full border-b border-[#141A15]/8 bg-[#F5EFE6]/90 backdrop-blur-md transition-colors">
+    <header className="site-header fixed top-0 z-40 w-full border-b border-[#141A15]/8 bg-[#F5EFE6]/90 backdrop-blur-md transition-colors">
       <div className="container-wide flex h-[82px] items-center justify-between">
         {/* Brand Logo */}
         <Link href="/" aria-label="Al Wahid Furnitures home" className="flex items-center transition-opacity hover:opacity-90">
@@ -67,7 +67,7 @@ export function Header() {
         <div className="flex items-center gap-4">
           <Link
             href="/products"
-            className="hidden sm:flex items-center justify-center w-9 h-9 text-[#141A15]/60 hover:text-[var(--green)] hover:bg-[#141A15]/5 rounded-full transition-colors"
+            className="flex items-center justify-center w-11 h-11 text-[#141A15]/60 hover:text-[var(--green)] hover:bg-[#141A15]/5 rounded-full transition-colors"
             aria-label="Search products"
           >
             <Search size={17} />
@@ -86,23 +86,23 @@ export function Header() {
           <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger asChild>
               <button
-                className="inline-flex h-10 w-10 items-center justify-center border border-[#141A15]/15 rounded-xs lg:hidden hover:border-[var(--green)] transition"
+                className="inline-flex h-11 w-11 items-center justify-center border border-[#141A15]/15 rounded-xl lg:hidden hover:border-[var(--green)] transition"
                 aria-label="Open navigation"
               >
                 <Menu size={20} />
               </button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-full bg-[var(--ivory)] sm:max-w-sm">
+            <SheetContent side="right" className="w-full overflow-y-auto bg-[var(--ivory)] px-6 pb-[max(24px,env(safe-area-inset-bottom))] sm:max-w-sm">
               <SheetHeader>
                 <SheetTitle className="font-display text-3xl text-[var(--green)]">
                   Al Wahid
                 </SheetTitle>
               </SheetHeader>
-              <nav className="mt-10 grid gap-5">
+              <nav className="mt-8 grid gap-2">
                 <Link
                   href="/"
                   onClick={() => setOpen(false)}
-                  className="font-display text-3xl text-[var(--charcoal)] hover:text-[var(--green)] transition"
+                  className="flex min-h-14 items-center rounded-xl px-3 font-display text-3xl text-[var(--charcoal)] hover:bg-[var(--green)]/5 hover:text-[var(--green)] transition"
                 >
                   Home
                 </Link>
@@ -111,7 +111,8 @@ export function Header() {
                     key={href}
                     href={href}
                     onClick={() => setOpen(false)}
-                    className="font-display text-3xl text-[var(--charcoal)] hover:text-[var(--green)] transition"
+                    aria-current={pathname === href || pathname.startsWith(`${href}/`) ? 'page' : undefined}
+                    className={`flex min-h-14 items-center rounded-xl px-3 font-display text-3xl transition ${pathname === href || pathname.startsWith(`${href}/`) ? 'bg-[var(--green)]/10 text-[var(--green)]' : 'text-[var(--charcoal)] hover:bg-[var(--green)]/5'}`}
                   >
                     {label}
                   </Link>
@@ -119,7 +120,7 @@ export function Header() {
                 <Link
                   href="/contact"
                   onClick={() => setOpen(false)}
-                  className="mt-5 inline-flex w-fit bg-[var(--green)] px-6 py-4 text-xs font-bold uppercase tracking-[.14em] text-[var(--ivory)] transition hover:bg-[#1B3328]"
+                  className="mt-5 inline-flex justify-center rounded-xl w-full bg-[var(--green)] px-6 py-4 text-xs font-bold uppercase tracking-[.14em] text-[var(--ivory)] transition hover:bg-[#1B3328]"
                 >
                   Request a Quote
                 </Link>

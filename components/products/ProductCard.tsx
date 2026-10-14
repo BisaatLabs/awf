@@ -20,7 +20,7 @@ export function ProductCard({ product }: { product: DisplayProduct }) {
   const widthStr = product.dimensions.width ? ` · ${product.dimensions.width}` : '';
 
   return (
-    <article className="group relative flex flex-col justify-between bg-white rounded-3xl p-5 md:p-6 border border-[#ECE8E0] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(41,72,58,0.09)] transition-all duration-500 hover:-translate-y-1.5 overflow-hidden">
+    <article className="product-card group relative flex flex-col justify-between bg-white rounded-3xl p-5 md:p-6 border border-[#ECE8E0] shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(41,72,58,0.09)] transition-all duration-500 hover:-translate-y-1.5 overflow-hidden">
       
       {/* ── TOP: Stage with Arch Backdrop & Wireframe Sketch ──── */}
       <div className="relative">
@@ -83,8 +83,9 @@ export function ProductCard({ product }: { product: DisplayProduct }) {
               e.preventDefault();
               setIsLiked((v) => !v);
             }}
-            className="absolute right-3.5 top-3.5 z-20 w-8 h-8 rounded-full bg-white/85 hover:bg-white backdrop-blur-xs flex items-center justify-center text-[#7B5135] transition-all duration-200 hover:scale-110 shadow-2xs cursor-pointer"
-            aria-label="Save piece to favorites"
+            className="absolute right-3.5 top-3.5 z-20 w-11 h-11 rounded-full bg-white/85 hover:bg-white backdrop-blur-xs flex items-center justify-center text-[#7B5135] transition-all duration-200 hover:scale-110 shadow-2xs cursor-pointer"
+            aria-label={isLiked ? "Remove piece from favorites" : "Save piece to favorites"}
+            aria-pressed={isLiked}
           >
             <Heart
               size={15}
@@ -96,7 +97,7 @@ export function ProductCard({ product }: { product: DisplayProduct }) {
 
       {/* ── MIDDLE: Product Info & Materials ─────────────────── */}
       <div className="mt-5 space-y-1.5">
-        <h3 className="font-display text-xl md:text-2xl text-[#141A15] leading-snug font-medium line-clamp-1 transition-colors group-hover:text-[var(--green)]">
+        <h3 className="font-display text-xl md:text-2xl text-[#141A15] leading-snug font-medium line-clamp-2 transition-colors group-hover:text-[var(--green)]">
           <Link href={`/products/${product.slug}`}>
             {product.name}
           </Link>
@@ -114,7 +115,7 @@ export function ProductCard({ product }: { product: DisplayProduct }) {
           href={createProductWhatsAppUrl(product)}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center justify-center gap-2 bg-[#7B5135] hover:bg-[#633F27] text-white px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-[0.12em] transition-all duration-300 shadow-xs hover:shadow-md hover:scale-[1.02]"
+          className="inline-flex items-center justify-center gap-2 bg-[#7B5135] hover:bg-[#633F27] text-white min-h-11 px-5 py-2.5 rounded-full text-[11px] font-bold uppercase tracking-[0.12em] transition-all duration-300 shadow-xs hover:shadow-md hover:scale-[1.02]"
         >
           Enquire Now
           <ArrowRight size={13} className="transition-transform group-hover:translate-x-0.5" />
@@ -122,7 +123,7 @@ export function ProductCard({ product }: { product: DisplayProduct }) {
 
         <Link
           href={`/products/${product.slug}`}
-          className="text-xs font-semibold text-[#141A15]/55 hover:text-[var(--green)] transition-colors"
+          className="inline-flex min-h-11 items-center text-xs font-semibold text-[#141A15]/55 hover:text-[var(--green)] transition-colors"
         >
           View Details →
         </Link>

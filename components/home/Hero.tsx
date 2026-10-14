@@ -4,7 +4,7 @@ import { ArrowRight, Leaf, Settings2, ShieldCheck } from 'lucide-react';
 
 export function Hero() {
   return (
-    <section className="relative min-h-[92svh] pt-[82px] overflow-hidden bg-gradient-to-b from-[#F7F4EE] via-[#F3EEE6] to-[#EFE8DC] flex items-center">
+    <section className="hero-section relative min-h-[92svh] pt-[82px] overflow-hidden bg-gradient-to-b from-[#F7F4EE] via-[#F3EEE6] to-[#EFE8DC] flex items-center">
       {/* Ambient background soft light glows */}
       <div className="absolute -top-32 -left-32 w-96 h-96 bg-[var(--green)]/5 rounded-full blur-3xl pointer-events-none animate-glow" />
       <div className="absolute top-1/4 right-0 w-[550px] h-[550px] bg-[var(--walnut)]/5 rounded-full blur-3xl pointer-events-none" />
@@ -18,10 +18,10 @@ export function Hero() {
       </div>
 
       <div className="container-wide relative z-10 py-10 lg:py-16">
-        <div className="grid lg:grid-cols-[1fr_1.35fr] gap-8 lg:gap-10 items-center">
+        <div className="hero-grid grid lg:grid-cols-[1fr_1.35fr] gap-8 lg:gap-10 items-center">
           
           {/* Left Content Column */}
-          <div className="space-y-6 lg:space-y-7 z-10 max-w-xl">
+          <div className="hero-copy space-y-6 lg:space-y-7 z-10 max-w-xl">
             {/* Eyebrow */}
             <div className="animate-fade-in-up">
               <span className="inline-flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.22em] text-[var(--walnut)]">
@@ -42,7 +42,7 @@ export function Hero() {
             </p>
 
             {/* Action Buttons */}
-            <div className="flex flex-wrap items-center gap-3.5 pt-1 animate-fade-in-up-delay-2">
+            <div className="hero-actions flex flex-wrap items-center gap-3.5 pt-1 animate-fade-in-up-delay-2">
               <Link
                 href="/products"
                 className="group inline-flex items-center gap-2.5 bg-[#1B3328] hover:bg-[#14261e] text-[var(--ivory)] px-7 py-3.5 text-xs font-bold uppercase tracking-[0.14em] rounded-xs shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md"
@@ -60,7 +60,7 @@ export function Hero() {
             </div>
 
             {/* Trust Badges */}
-            <div className="pt-6 border-t border-[#141A15]/10 grid grid-cols-3 gap-3 animate-fade-in-up-delay-3">
+            <div className="hero-trust pt-6 border-t border-[#141A15]/10 grid grid-cols-3 gap-3 animate-fade-in-up-delay-3">
               <div className="flex items-center gap-2.5">
                 <div className="w-8 h-8 rounded-full bg-[var(--green)]/10 text-[var(--green)] flex items-center justify-center shrink-0">
                   <Leaf size={15} />
@@ -94,7 +94,7 @@ export function Hero() {
           </div>
 
           {/* Right Column: Transparent Cutout Furniture Suite */}
-          <div className="relative flex items-center justify-center animate-fade-in-up-delay-1">
+          <div className="hero-stage relative flex items-center justify-center animate-fade-in-up-delay-1">
             {/* Soft ground shadow beneath furniture */}
             <div className="absolute -bottom-6 w-5/6 h-12 bg-black/15 blur-2xl rounded-full pointer-events-none" />
             

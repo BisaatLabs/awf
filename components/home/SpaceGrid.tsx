@@ -46,7 +46,7 @@ export function SpaceGrid() {
         </div>
 
         {/* Cards Grid */}
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
+        <div className="space-grid grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 lg:gap-6">
           {spaces.map((space, i) => (
             <Link
               key={space.slug}

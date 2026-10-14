@@ -125,15 +125,16 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
   return (
     <div>
       {/* Search & Category Filter Toolbar */}
-      <div className="mb-10 border-y border-[var(--line)] py-5">
+      <div className="catalogue-toolbar mb-10 border-y border-[var(--line)] py-5">
         <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
           <label className="relative flex flex-1 items-center gap-3 border-b border-[var(--line)] pb-3 lg:max-w-sm">
             <Search size={17} className="text-[var(--walnut)]" />
             <input
               value={searchInput}
               onChange={(e) => setSearchInput(e.target.value)}
-              placeholder="Search catalogue by name, SKU, or specs..."
-              className="w-full bg-transparent text-sm outline-none placeholder:text-[var(--charcoal)]/40"
+              aria-label="Search products by name, SKU, or specifications"
+              placeholder="Search furniture, SKU or specs"
+              className="min-w-0 w-full bg-transparent text-base sm:text-sm outline-none placeholder:text-[var(--charcoal)]/40"
             />
             {searchInput && (
               <button
@@ -146,13 +147,13 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
             )}
           </label>
 
-          <div className="flex items-center gap-2 overflow-x-auto pb-1">
+          <div className="category-filters flex min-w-0 items-center gap-2 overflow-x-auto pb-1 lg:max-w-[60%]">
             <SlidersHorizontal size={16} className="mr-1 shrink-0 text-[var(--walnut)]" />
             {categoryNames.map((item) => (
               <button
                 key={item}
-                onClick={() => setCategory(item)}
-                className={`whitespace-nowrap border px-3 py-2 text-[10px] font-bold uppercase tracking-[.1em] transition ${
+                onClick={() => setCategory(item)} aria-pressed={category === item}
+                className={`min-h-11 rounded-full whitespace-nowrap border px-4 py-2 text-[10px] font-bold uppercase tracking-[.1em] transition ${
                   category === item
                     ? 'border-[var(--green)] bg-[var(--green)] text-[var(--ivory)]'
                     : 'border-[var(--line)] text-[var(--charcoal)]/60 hover:border-[var(--green)]'
@@ -164,8 +165,23 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
           </div>
         </div>
 
+        <div className="mt-4 grid grid-cols-2 gap-3 sm:hidden">
+          <label className="grid gap-2 text-xs font-semibold text-[var(--green)]">
+            Space
+            <select value={space} onChange={(e) => setSpace(e.target.value)} className="min-h-12 min-w-0 rounded-xl border border-[var(--line)] bg-[var(--ivory-light)] px-3 text-base text-[var(--charcoal)]">
+              {SPACES.map((item) => <option key={item} value={item}>{item === 'All' ? 'All spaces' : item}</option>)}
+            </select>
+          </label>
+          <label className="grid gap-2 text-xs font-semibold text-[var(--green)]">
+            Material
+            <select value={material} onChange={(e) => setMaterial(e.target.value)} className="min-h-12 min-w-0 rounded-xl border border-[var(--line)] bg-[var(--ivory-light)] px-3 text-base text-[var(--charcoal)]">
+              {MATERIALS.map((item) => <option key={item} value={item}>{item === 'All' ? 'All materials' : item}</option>)}
+            </select>
+          </label>
+        </div>
+
         {/* Space & Material Sub-filters */}
-        <div className="mt-5 flex flex-wrap items-center gap-2">
+        <div className="mt-5 hidden sm:flex flex-wrap items-center gap-2">
           <span className="mr-1 text-[10px] font-bold uppercase tracking-[.12em] text-[var(--charcoal)]/40">Space:</span>
           {SPACES.map((item) => (
             <button
@@ -202,7 +218,7 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
 
       {error && <p role="alert" className="mb-4 text-sm text-red-700">{error}</p>}
       {/* Results Header */}
-      <div className="mb-6 flex items-center justify-between">
+      <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <p className="text-xs uppercase tracking-[.12em] text-[var(--charcoal)]/50">
           Showing <span className="font-semibold text-[var(--charcoal)]">{products.length}</span> of{' '}
           <span className="font-semibold text-[var(--charcoal)]">{totalCount}</span> pieces
@@ -212,7 +228,7 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
         {hasActiveFilters && (
           <button
             onClick={handleReset}
-            className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[.1em] text-[var(--green)] hover:underline"
+            className="min-h-11 inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-[.1em] text-[var(--green)] hover:underline"
           >
             <RotateCcw size={12} /> Clear Filters
           </button>
@@ -232,7 +248,7 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
       {/* Products Grid */}
       {products.length > 0 ? (
         <>
-          <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-x-6 gap-y-6 sm:gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {products.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
@@ -243,7 +259,7 @@ export function ProductBrowser({ initialResult, categoriesList = [] }: ProductBr
             <div className="mt-14 flex justify-center">
               <button
                 onClick={handleLoadMore}
-                disabled={isLoadingMore}
+                disabled={isLoadingMore || isFiltering}
                 className="group inline-flex items-center gap-2 border border-[var(--green)] bg-transparent px-8 py-4 text-xs font-bold uppercase tracking-[.14em] text-[var(--green)] transition hover:bg-[var(--green)] hover:text-[var(--ivory)] disabled:opacity-50 cursor-pointer"
               >
                 {isLoadingMore ? (

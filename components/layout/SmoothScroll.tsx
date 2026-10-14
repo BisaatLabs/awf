@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import Lenis from 'lenis';
 export function SmoothScroll() {
   useEffect(() => {
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce), (pointer: coarse)').matches) return;
     const lenis = new Lenis({duration:1.05,easing:(t:number)=>Math.min(1,1.001-Math.pow(2,-10*t)),smoothWheel:true});
     let frame: number;
     const raf = (time: number) => {lenis.raf(time); frame=requestAnimationFrame(raf);};
