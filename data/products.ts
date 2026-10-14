@@ -1,8 +1,10 @@
 // Auto-generated product catalog from Al Wahid Furnitures Drive folders
 import type { Product } from './content';
 import projectFurniture from './project-furniture.json';
+import namazChair from './namaz-chair.json';
 
 export const products: Product[] = [
+  namazChair,
   ...projectFurniture,
   {
     "id": "awf-001",

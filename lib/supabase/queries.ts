@@ -3,6 +3,7 @@
 
 import { createServerClient } from './server';
 import projectFurniture from '@/data/project-furniture.json';
+import namazChair from '@/data/namaz-chair.json';
 
 // ─── Types ────────────────────────────────────────────────────
 export interface DisplayProduct {
@@ -24,6 +25,7 @@ export interface DisplayProduct {
   customizable: boolean;
   featured: boolean;
   is_active: boolean;
+  priceDisplay?: string | null;
   primaryImage: string | null;
   images: string[];
 }
@@ -64,6 +66,7 @@ interface RawProduct {
   space: string | null;
   description: string | null;
   short_description: string | null;
+  price_display: string | null;
   materials: string[] | null;
   finish: string | null;
   width_mm: string | null;
@@ -110,6 +113,7 @@ function toDisplayProduct(raw: RawProduct): DisplayProduct {
     customizable:  raw.customizable ?? true,
     featured:      raw.featured ?? false,
     is_active:     raw.is_active ?? true,
+    priceDisplay: raw.slug === namazChair.slug ? namazChair.priceDisplay : raw.price_display,
     primaryImage,
     images:        imageUrls.length > 0 ? imageUrls : (primaryImage ? [primaryImage] : []),
   };
@@ -117,15 +121,15 @@ function toDisplayProduct(raw: RawProduct): DisplayProduct {
 
 const PRODUCT_SELECT = `
   id, sku, name, slug, space, description, short_description,
-  materials, finish, width_mm, depth_mm, height_mm,
+  materials, finish, price_display, width_mm, depth_mm, height_mm,
   customizable, featured, is_active,
   categories ( name ),
   product_images ( secure_url, sort_order, is_primary )
 ` as const;
 
 // New made-to-order entries remain visible before they are imported into Supabase.
-const projectProducts: DisplayProduct[] = projectFurniture.map((product) => ({
-  ...product, sku: product.id, is_active: true, primaryImage: null,
+const projectProducts: DisplayProduct[] = [namazChair, ...projectFurniture].map((product) => ({
+  ...product, sku: product.id, is_active: true, primaryImage: product.images[0] ?? null,
 }));
 
 function filterProjectProducts(params: ProductFilterParams): DisplayProduct[] {

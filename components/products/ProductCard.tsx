@@ -109,6 +109,8 @@ export function ProductCard({ product }: { product: DisplayProduct }) {
         </p>
       </div>
 
+      {product.priceDisplay && <p className="mt-4 text-lg font-bold text-[var(--green)]">{product.priceDisplay}</p>}
+
       {/* ── BOTTOM: Enquire Button ───────────────────────────── */}
       <div className="mt-6 pt-4 border-t border-[#F2ECE1] flex items-center justify-between gap-3">
         <a

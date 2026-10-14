@@ -194,6 +194,7 @@ async function seedProducts(
     space:             p.space,
     description:       p.description,
     short_description: p.shortDescription,
+    ...(p.slug === 'namaz-chair' ? { price_display: 'PKR 18,000' } : {}),
     materials:         p.materials,
     finish:            p.finish,
     width_mm:          p.dimensions?.width  ?? null,

@@ -1,0 +1,28 @@
+{
+  "id": "awf-namaz-chair",
+  "name": "Namaz Chair",
+  "slug": "namaz-chair",
+  "category": "Study & Seating",
+  "space": "Home, Institutional",
+  "description": "A folding Namaz chair with a gold-tone metal frame, patterned upholstered seat and backrest, armrests, and an attached padded prayer support. Current offer price: PKR 18,000. Contact the workshop to confirm availability and delivery.",
+  "shortDescription": "Folding Namaz chair with upholstered seating and an attached prayer support. Now PKR 18,000.",
+  "materials": [
+    "Metal",
+    "Fabric",
+    "Upholstery"
+  ],
+  "finish": "Gold-tone frame with patterned fabric upholstery",
+  "dimensions": {
+    "width": "",
+    "depth": "",
+    "height": ""
+  },
+  "images": [
+    "https://res.cloudinary.com/vunj8tho/image/upload/v1792015495/awf/products/63df2dac-de14-468d-901c-a109195aa561.jpg"
+  ],
+  "customizable": false,
+  "featured": true,
+  "priceDisplay": "PKR 18,000",
+  "offerPrice": 18000,
+  "cloudinaryPublicId": "awf/products/63df2dac-de14-468d-901c-a109195aa561"
+}
