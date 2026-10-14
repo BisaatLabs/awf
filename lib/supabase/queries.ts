@@ -2,6 +2,7 @@
 // Central data-fetching functions for Supabase with pagination, caching, and strong types.
 
 import { createServerClient } from './server';
+import projectFurniture from '@/data/project-furniture.json';
 
 // ─── Types ────────────────────────────────────────────────────
 export interface DisplayProduct {
@@ -122,6 +123,21 @@ const PRODUCT_SELECT = `
   product_images ( secure_url, sort_order, is_primary )
 ` as const;
 
+// New made-to-order entries remain visible before they are imported into Supabase.
+const projectProducts: DisplayProduct[] = projectFurniture.map((product) => ({
+  ...product, sku: product.id, is_active: true, primaryImage: null,
+}));
+
+function filterProjectProducts(params: ProductFilterParams): DisplayProduct[] {
+  const search = (params.search || '').trim().slice(0, 200).replace(/[^\p{L}\p{N}\s-]/gu, ' ').trim().toLowerCase();
+  return projectProducts.filter((product) =>
+    (!params.category || params.category === 'All' || product.category === params.category) &&
+    (!params.space || params.space === 'All' || product.space.toLowerCase().includes(params.space.toLowerCase())) &&
+    (!params.material || params.material === 'All' || product.materials.includes(params.material)) &&
+    (!search || [product.name, product.description, product.sku || product.id].some((value) => value.toLowerCase().includes(search)))
+  );
+}
+
 // ─── Fetch Categories List ────────────────────────────────────
 export async function getCategoriesList(): Promise<{ id: string; name: string; slug: string }[]> {
   try {
@@ -135,7 +151,11 @@ export async function getCategoriesList(): Promise<{ id: string; name: string; s
       console.error('[getCategoriesList] Error:', error.message);
       return [];
     }
-    return data ?? [];
+    const categories = data ?? [];
+    const missing = [...new Set(projectProducts.map((product) => product.category))]
+      .filter((name) => !categories.some((category) => category.name === name))
+      .map((name) => ({ id: 'project-' + name, name, slug: name.toLowerCase().replace(/[^a-z0-9]+/g, '-') }));
+    return [...categories, ...missing].sort((a, b) => a.name.localeCompare(b.name));
   } catch (err) {
     console.error('[getCategoriesList] Unexpected error:', err);
     return [];
@@ -167,6 +187,12 @@ export async function getPaginatedProducts(
       .select(PRODUCT_SELECT, { count: 'exact' })
       .eq('is_active', true);
 
+    const { data: imported, error: importedError } = await supabase.from('products')
+      .select('slug,is_active').in('slug', projectProducts.map((product) => product.slug));
+    if (importedError) throw importedError;
+    const importedSlugs = new Set((imported || []).map((product) => product.slug));
+    const additions = filterProjectProducts(params).filter((product) => !importedSlugs.has(product.slug));
+
     // Filter by category
     if (category && category !== 'All') {
       const { data: catData, error: categoryError } = await supabase
@@ -176,7 +202,7 @@ export async function getPaginatedProducts(
         .single();
 
       if (categoryError && categoryError.code !== 'PGRST116') throw categoryError;
-      if (!catData) return { products: [], totalCount: 0, totalPages: 0, currentPage: validPage, pageSize: validPageSize, hasMore: false };
+      if (!catData) return { products: additions.slice(offset, offset + validPageSize), totalCount: additions.length, totalPages: Math.ceil(additions.length / validPageSize), currentPage: validPage, pageSize: validPageSize, hasMore: offset + validPageSize < additions.length };
       query = query.eq('category_id', catData.id);
     }
 
@@ -208,9 +234,11 @@ export async function getPaginatedProducts(
       throw new Error('Unable to load the catalogue. Please try again.');
     }
 
-    const totalCount = count ?? 0;
+    const databaseCount = count ?? 0;
+    const totalCount = databaseCount + additions.length;
     const totalPages = Math.ceil(totalCount / validPageSize);
     const products = ((data as unknown as RawProduct[]) || []).map(toDisplayProduct);
+    products.push(...additions.slice(Math.max(0, offset - databaseCount), Math.max(0, offset + validPageSize - databaseCount)));
 
     return {
       products,
@@ -247,13 +275,13 @@ export async function getProductBySlug(slug: string): Promise<DisplayProduct | n
       .from('products')
       .select(PRODUCT_SELECT)
       .eq('slug', slug)
-      .eq('is_active', true)
       .single();
 
     if (error || !data) {
-      return null;
+      return error && error.code !== 'PGRST116' ? null : projectProducts.find((product) => product.slug === slug) ?? null;
     }
 
+    if (!data.is_active) return null;
     return toDisplayProduct(data as unknown as RawProduct);
   } catch (err) {
     console.error(`[getProductBySlug] Exception for "${slug}":`, err);
@@ -271,7 +299,7 @@ export async function getAllProductSlugs(): Promise<string[]> {
       .eq('is_active', true);
 
     if (error || !data) return [];
-    return data.map((r: { slug: string }) => r.slug);
+    return [...new Set([...data.map((r: { slug: string }) => r.slug), ...projectProducts.map((product) => product.slug)])];
   } catch (err) {
     console.error('[getAllProductSlugs] Error:', err);
     return [];
@@ -304,17 +332,8 @@ export async function getProductsBySpace(
   limit = 12
 ): Promise<DisplayProduct[]> {
   try {
-    const supabase = createServerClient();
-    const { data, error } = await supabase
-      .from('products')
-      .select(PRODUCT_SELECT)
-      .eq('is_active', true)
-      .ilike('space', `%${space}%`)
-      .order('sort_order', { ascending: true })
-      .limit(limit);
-
-    if (error || !data) return [];
-    return (data as unknown as RawProduct[]).map(toDisplayProduct);
+    const result = await getPaginatedProducts({ space, pageSize: limit });
+    return result.products;
   } catch (err) {
     console.error(`[getProductsBySpace] Error for space "${space}":`, err);
     return [];

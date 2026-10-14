@@ -1,7 +1,9 @@
 // Auto-generated product catalog from Al Wahid Furnitures Drive folders
 import type { Product } from './content';
+import projectFurniture from './project-furniture.json';
 
 export const products: Product[] = [
+  ...projectFurniture,
   {
     "id": "awf-001",
     "name": "Dark Walnut Gold Filigree Storage Bed",

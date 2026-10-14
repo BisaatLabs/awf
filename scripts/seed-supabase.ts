@@ -26,6 +26,9 @@ config({ path: '.env.local' });
 import { v2 as cloudinary } from 'cloudinary';
 import { createClient } from '@supabase/supabase-js';
 import { products as localProducts } from '../data/products';
+import projectFurniture from '../data/project-furniture.json';
+
+const madeToOrderSlugs = new Set(projectFurniture.map((product) => product.slug));
 
 // ─── Validate env ─────────────────────────────────────────────
 const required = [
@@ -198,8 +201,8 @@ async function seedProducts(
     height_mm:         p.dimensions?.height ?? null,
     customizable:      p.customizable ?? true,
     featured:          p.featured && assetMap.has(p.slug),
-    // Only active if we found a real Cloudinary image for it
-    is_active:         assetMap.has(p.slug),
+    // Existing photo catalogue needs an image; made-to-order entries may await photos.
+    is_active:         assetMap.has(p.slug) || madeToOrderSlugs.has(p.slug),
     sort_order:        i,
   }));
 
@@ -282,7 +285,7 @@ async function seedImages(
   const productsWithImgs = new Set(allImageRows.map((r) => r.product_id)).size;
   console.log(`   ✅ ${allImageRows.length} images across ${productsWithImgs} products`);
 
-  const noImage = localProducts.filter((p) => !assetMap.has(p.slug));
+  const noImage = localProducts.filter((p) => !assetMap.has(p.slug) && !madeToOrderSlugs.has(p.slug));
   if (noImage.length > 0) {
     console.warn(`\n   ⚠  ${noImage.length} products have no Cloudinary asset (is_active=false):`);
     noImage.forEach((p) => console.warn(`      - ${p.id}: ${p.name}`));

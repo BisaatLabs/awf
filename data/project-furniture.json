@@ -1,0 +1,183 @@
+[
+  {
+    "id": "awf-corp-001",
+    "name": "Modular Corporate Workstation",
+    "slug": "modular-corporate-workstation",
+    "category": "Desks",
+    "space": "Corporate",
+    "description": "A configurable desk system for shared office layouts, with workspace sizes and cable routing planned around your team. Made to order; final specifications, availability and pricing are confirmed by the workshop.",
+    "shortDescription": "A configurable desk system for shared office layouts, with workspace sizes and cable routing planned around your team.",
+    "materials": [
+      "Wood",
+      "Laminate",
+      "Metal"
+    ],
+    "finish": "Custom finish — confirmed during consultation",
+    "dimensions": {
+      "width": "",
+      "depth": "",
+      "height": ""
+    },
+    "images": [],
+    "customizable": true,
+    "featured": false
+  },
+  {
+    "id": "awf-corp-002",
+    "name": "Boardroom Meeting Table",
+    "slug": "boardroom-meeting-table",
+    "category": "Tables",
+    "space": "Corporate",
+    "description": "A made-to-order meeting table for boardrooms and collaborative spaces. Seating capacity, tabletop shape and finish are agreed during consultation. Made to order; final specifications, availability and pricing are confirmed by the workshop.",
+    "shortDescription": "A made-to-order meeting table for boardrooms and collaborative spaces. Seating capacity, tabletop shape and finish are agreed during consultation.",
+    "materials": [
+      "Wood",
+      "Laminate",
+      "Metal"
+    ],
+    "finish": "Custom finish — confirmed during consultation",
+    "dimensions": {
+      "width": "",
+      "depth": "",
+      "height": ""
+    },
+    "images": [],
+    "customizable": true,
+    "featured": false
+  },
+  {
+    "id": "awf-corp-003",
+    "name": "Corporate Reception Counter",
+    "slug": "corporate-reception-counter",
+    "category": "Storage",
+    "space": "Corporate",
+    "description": "A custom reception counter with a visitor-facing surface and staff storage. Layout, branding details and finish can be tailored to your reception area. Made to order; final specifications, availability and pricing are confirmed by the workshop.",
+    "shortDescription": "A custom reception counter with a visitor-facing surface and staff storage. Layout, branding details and finish can be tailored to your reception area.",
+    "materials": [
+      "Wood",
+      "Laminate"
+    ],
+    "finish": "Custom finish — confirmed during consultation",
+    "dimensions": {
+      "width": "",
+      "depth": "",
+      "height": ""
+    },
+    "images": [],
+    "customizable": true,
+    "featured": false
+  },
+  {
+    "id": "awf-corp-004",
+    "name": "Office Filing and Storage Cabinet",
+    "slug": "office-filing-and-storage-cabinet",
+    "category": "Storage",
+    "space": "Corporate",
+    "description": "Configurable document storage for workplaces, with shelving and door arrangements selected around your filing requirements. Made to order; final specifications, availability and pricing are confirmed by the workshop.",
+    "shortDescription": "Configurable document storage for workplaces, with shelving and door arrangements selected around your filing requirements.",
+    "materials": [
+      "Wood",
+      "Laminate",
+      "Metal"
+    ],
+    "finish": "Custom finish — confirmed during consultation",
+    "dimensions": {
+      "width": "",
+      "depth": "",
+      "height": ""
+    },
+    "images": [],
+    "customizable": true,
+    "featured": false
+  },
+  {
+    "id": "awf-inst-001",
+    "name": "Institutional Waiting Bench",
+    "slug": "institutional-waiting-bench",
+    "category": "Benches",
+    "space": "Institutional",
+    "description": "A made-to-order waiting bench for reception areas and shared corridors. Seat count, upholstery and frame finish are selected for the project. Made to order; final specifications, availability and pricing are confirmed by the workshop.",
+    "shortDescription": "A made-to-order waiting bench for reception areas and shared corridors. Seat count, upholstery and frame finish are selected for the project.",
+    "materials": [
+      "Metal",
+      "Upholstery"
+    ],
+    "finish": "Custom finish — confirmed during consultation",
+    "dimensions": {
+      "width": "",
+      "depth": "",
+      "height": ""
+    },
+    "images": [],
+    "customizable": true,
+    "featured": false
+  },
+  {
+    "id": "awf-inst-002",
+    "name": "Library Reading Table",
+    "slug": "library-reading-table",
+    "category": "Tables",
+    "space": "Institutional",
+    "description": "A shared reading table for libraries and study rooms. Dimensions, seating arrangement and finish can be configured for your space. Made to order; final specifications, availability and pricing are confirmed by the workshop.",
+    "shortDescription": "A shared reading table for libraries and study rooms. Dimensions, seating arrangement and finish can be configured for your space.",
+    "materials": [
+      "Wood",
+      "Laminate",
+      "Metal"
+    ],
+    "finish": "Custom finish — confirmed during consultation",
+    "dimensions": {
+      "width": "",
+      "depth": "",
+      "height": ""
+    },
+    "images": [],
+    "customizable": true,
+    "featured": false
+  },
+  {
+    "id": "awf-inst-003",
+    "name": "Institutional Cafeteria Table Set",
+    "slug": "institutional-cafeteria-table-set",
+    "category": "Benches",
+    "space": "Institutional",
+    "description": "A configurable table and bench set for institutional dining areas. Table size, bench layout and surface finish are agreed during consultation. Made to order; final specifications, availability and pricing are confirmed by the workshop.",
+    "shortDescription": "A configurable table and bench set for institutional dining areas. Table size, bench layout and surface finish are agreed during consultation.",
+    "materials": [
+      "Wood",
+      "Laminate",
+      "Metal"
+    ],
+    "finish": "Custom finish — confirmed during consultation",
+    "dimensions": {
+      "width": "",
+      "depth": "",
+      "height": ""
+    },
+    "images": [],
+    "customizable": true,
+    "featured": false
+  },
+  {
+    "id": "awf-inst-004",
+    "name": "Dormitory Bunk Bed",
+    "slug": "dormitory-bunk-bed",
+    "category": "Iron Beds",
+    "space": "Institutional",
+    "description": "A made-to-order bunk bed for shared accommodation. Mattress sizes, access ladder and guardrail details are confirmed with the workshop before manufacture. Made to order; final specifications, availability and pricing are confirmed by the workshop.",
+    "shortDescription": "A made-to-order bunk bed for shared accommodation. Mattress sizes, access ladder and guardrail details are confirmed with the workshop before manufacture.",
+    "materials": [
+      "Iron",
+      "Metal"
+    ],
+    "finish": "Custom finish — confirmed during consultation",
+    "dimensions": {
+      "width": "",
+      "depth": "",
+      "height": ""
+    },
+    "images": [],
+    "customizable": true,
+    "featured": false
+  }
+]
