@@ -50,7 +50,7 @@ export function PaymentBadges({ className = '', showHelperText = true }: Payment
                 type="button"
                 onClick={() => setSelectedMethod(method)}
                 title={`Click for ${method.name} account details`}
-                className="group relative flex h-[48px] w-[86px] sm:h-[52px] sm:w-[96px] cursor-pointer items-center justify-center rounded-md bg-white p-1.5 shadow-sm border border-black/10 sm:border-white/20 transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:shadow-md hover:ring-2 hover:ring-[var(--walnut)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--walnut)]"
+                className="group relative flex h-[48px] w-[86px] sm:h-[52px] sm:w-[96px] cursor-pointer items-center justify-center rounded-md bg-white p-0.5 shadow-sm border border-black/10 sm:border-white/20 transition-all duration-200 hover:-translate-y-0.5 hover:scale-105 hover:shadow-md hover:ring-2 hover:ring-[var(--walnut)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--walnut)]"
               >
                 <Image
                   src={logoPath}
