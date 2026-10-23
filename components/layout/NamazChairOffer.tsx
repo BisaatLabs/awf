@@ -8,8 +8,8 @@ import * as Dialog from '@radix-ui/react-dialog';
 import chair from '@/data/namaz-chair.json';
 import { createWhatsAppUrl } from '@/lib/whatsapp';
 
-const DISMISSED_KEY = 'awf-namaz-chair-offer-18000';
-const orderUrl = createWhatsAppUrl('Hello Al Wahid Furnitures, I would like to order the Namaz Chair at the advertised offer price of PKR 18,000. Please confirm availability and delivery charges.');
+const DISMISSED_KEY = 'awf-namaz-chair-offer-16500';
+const orderUrl = createWhatsAppUrl('Hello Al Wahid Furnitures, I would like to order the Namaz Chair at the advertised offer price of PKR 16,500. Please confirm availability and delivery charges.');
 
 export function NamazChairOffer() {
   const [open, setOpen] = useState(false);
@@ -42,9 +42,9 @@ export function NamazChairOffer() {
             <X size={20} />
           </Dialog.Close>
           <div className="grid md:grid-cols-2">
-            <div className="relative min-h-[220px] bg-white md:min-h-[460px]">
+            <div className="relative min-h-[280px] overflow-hidden bg-[#E6E6E8] md:min-h-[460px]">
               <span className="absolute left-4 top-4 z-10 rounded-full bg-[var(--walnut)] px-4 py-2 text-[10px] font-bold uppercase tracking-[.15em] text-[var(--ivory-light)]">Special offer</span>
-              <Image src={chair.images[0]} alt="Gold-tone folding Namaz chair with patterned upholstery and padded prayer support" fill sizes="(max-width: 767px) 90vw, 384px" className="object-contain p-5 pt-12" />
+              <Image src="/images/offers/namaz-chair.png" alt="Gold-tone folding Namaz chair with patterned upholstery and padded prayer support" fill sizes="(max-width: 767px) 90vw, 384px" className="object-cover object-center" />
             </div>
             <div className="flex flex-col justify-center p-6 md:p-9">
               <p className="eyebrow">Comfort for your prayer space</p>
@@ -52,7 +52,7 @@ export function NamazChairOffer() {
               <Dialog.Description className="mt-3 text-sm leading-6 text-[var(--charcoal)]/65">Upholstered comfort, a folding metal frame, and an attached padded prayer support.</Dialog.Description>
               <div className="my-5 rounded-2xl border border-[var(--walnut)]/20 bg-[var(--ivory)] px-5 py-4">
                 <p className="text-[10px] font-bold uppercase tracking-[.16em] text-[var(--walnut)]">Now only</p>
-                <p className="mt-1 text-4xl font-bold tracking-tight text-[var(--green)]"><span className="mr-2 text-sm font-semibold tracking-normal">PKR</span>18,000</p>
+                <p className="mt-1 text-4xl font-bold tracking-tight text-[var(--green)]"><span className="mr-2 text-sm font-semibold tracking-normal">PKR</span>16,500</p>
               </div>
               <a href={orderUrl} target="_blank" rel="noreferrer" onClick={dismiss} className="flex min-h-12 items-center justify-center gap-3 rounded-2xl border border-white/20 bg-gradient-to-br from-[var(--green)] to-[var(--green-dark)] px-5 py-3 text-sm font-semibold text-[var(--ivory-light)] shadow-lg transition hover:shadow-xl active:scale-[.98]">
                 <MessageCircle size={18} /> Order on WhatsApp

@@ -1,7 +1,7 @@
 export const COMPANY_INFO = {
   name: 'Al Wahid Furnitures',
   tagline: 'Built for Every Space.',
-  established: 1974,
+  established: 1984,
   address: {
     shop: 'Shop #19 & 20, Zeenat Square',
     area: 'Liaquatabad',

@@ -3,9 +3,9 @@ import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'About | Al Wahid Furnitures — Established 1974',
+  title: 'About | Al Wahid Furnitures — Established 1984',
   description:
-    'Established in 1974, Al Wahid Furnitures brings a considered approach to furniture for homes, workplaces, and shared spaces. Discover our perspective.',
+    'Established in 1984, Al Wahid Furnitures brings a considered approach to furniture for homes, workplaces, and shared spaces. Discover our perspective.',
 };
 
 const principles = [
@@ -37,7 +37,7 @@ export default function AboutPage() {
       <section aria-labelledby="about-heading" className="container-wide pb-16 pt-14 sm:pb-24 sm:pt-20 lg:pt-24">
         <div className="mb-10 flex items-center justify-between border-b border-[var(--line)] pb-5 sm:mb-16">
           <p className="eyebrow">About Al Wahid</p>
-          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--charcoal)]/60">Est. 1974</span>
+          <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--charcoal)]/60">Est. 1984</span>
         </div>
 
         <div className="grid items-center gap-12 lg:grid-cols-[1.15fr_1fr] lg:gap-20">
@@ -60,7 +60,7 @@ export default function AboutPage() {
             <p className="relative text-[10px] font-semibold uppercase tracking-[0.24em] text-[#F4F0E7]/75">Al Wahid Furnitures</p>
             <div className="relative py-8">
               <p className="mb-1 text-[10px] font-medium uppercase tracking-[0.3em] text-[#F4F0E7]/75">Established</p>
-              <p className="font-display text-[clamp(6.5rem,13vw,11.5rem)] leading-none tracking-[-0.055em]">1974<span className="text-[#C4A477]">.</span></p>
+              <p className="font-display text-[clamp(6.5rem,13vw,11.5rem)] leading-none tracking-[-0.055em]">1984<span className="text-[#C4A477]">.</span></p>
             </div>
             <div className="relative flex items-center justify-between gap-4 border-t border-[#F4F0E7]/25 pt-5">
               <span className="text-[10px] font-semibold uppercase tracking-[0.18em]">Built for every space.</span>
@@ -75,11 +75,11 @@ export default function AboutPage() {
           <p className="eyebrow lg:pt-2">Our perspective</p>
           <div className="max-w-3xl">
             <h2 id="perspective-heading" className="font-display text-4xl leading-[1.1] tracking-[-0.025em] text-[var(--green)] sm:text-5xl">
-              Rooted in 1974.<br />Considered for today.
+              Rooted in 1984.<br />Considered for today.
             </h2>
             <div className="mt-7 grid gap-5 text-sm leading-7 text-[var(--charcoal)]/70 sm:grid-cols-2 sm:gap-10">
               <p>
-                Established in 1974, Al Wahid Furnitures is a name with a history.
+                Established in 1984, Al Wahid Furnitures is a name with a history.
                 Our focus today is simple: furniture that feels right in its
                 surroundings and serves a purpose in everyday life.
               </p>
