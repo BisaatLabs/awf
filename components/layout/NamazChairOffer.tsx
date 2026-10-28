@@ -31,7 +31,7 @@ export function NamazChairOffer() {
       <Dialog.Portal>
         <Dialog.Overlay className="chair-offer-overlay fixed inset-0 z-[60] bg-[var(--green-dark)]/70 backdrop-blur-sm" />
         <Dialog.Content
-          className="chair-offer-panel fixed left-1/2 top-1/2 z-[61] w-[calc(100%_-_32px)] max-w-3xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto rounded-[28px] border border-[var(--walnut)]/20 bg-[var(--ivory-light)] shadow-2xl outline-none"
+          className="chair-offer-panel fixed left-1/2 top-1/2 z-[61] w-[calc(100%_-_32px)] max-w-3xl -translate-x-1/2 -translate-y-1/2 overflow-y-auto overscroll-contain rounded-[28px] border border-[var(--walnut)]/20 bg-[var(--ivory-light)] shadow-2xl outline-none"
           onOpenAutoFocus={(event) => { event.preventDefault(); closeButton.current?.focus(); }}
           onCloseAutoFocus={(event) => {
             event.preventDefault();
@@ -42,9 +42,9 @@ export function NamazChairOffer() {
             <X size={20} />
           </Dialog.Close>
           <div className="grid md:grid-cols-2">
-            <div className="relative min-h-[280px] overflow-hidden bg-[#E6E6E8] md:min-h-[460px]">
+            <div className="chair-offer-image relative h-[clamp(240px,38dvh,320px)] overflow-hidden bg-[#E6E6E8] md:h-auto md:min-h-[460px]">
               <span className="absolute left-4 top-4 z-10 rounded-full bg-[var(--walnut)] px-4 py-2 text-[10px] font-bold uppercase tracking-[.15em] text-[var(--ivory-light)]">Special offer</span>
-              <Image src="/images/offers/namaz-chair.png" alt="Gold-tone folding Namaz chair with patterned upholstery and padded prayer support" fill sizes="(max-width: 767px) 90vw, 384px" className="object-cover object-center" />
+              <Image src="/images/offers/namaz-chair.png" alt="Gold-tone folding Namaz chair with patterned upholstery and padded prayer support" fill sizes="(max-width: 767px) 90vw, 384px" className="object-contain object-center pt-8 md:object-cover md:pt-0" />
             </div>
             <div className="flex flex-col justify-center p-6 md:p-9">
               <p className="eyebrow">Comfort for your prayer space</p>
